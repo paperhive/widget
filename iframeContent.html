@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <style>
-    /*.container {
-      display: table;
-      width: 16%;
-    }
-    .container .text {
-      display: table-cell;
-      vertical-align: middle;
-      color: gray;
-    }
-    .ph-gray {
-      color: gray;
-    }*/
-    body {
-      text-align: center;
-      font-family: "Arial";
-    }
-    .widget {
-      position: relative;
-    }
-    .circle {
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      background-color: #ff7f2a;
-      color: white;
-      font-size: 14px;
-      line-height: 18px;
-      padding: 2px;
-      margin-left: -18px;
-      margin-top: 6px;
-      font-weight: bold;
-    }
-    .circle-position {
-      position: absolute;
-    }
-  </style>
+    <script src="iframe.js"></script>
+    <style>
+      /*.container {
+        display: table;
+        width: 16%;
+      }
+      .container .text {
+        display: table-cell;
+        vertical-align: middle;
+        color: gray;
+      }
+      .ph-gray {
+        color: gray;
+      }*/
+      body {
+        text-align: center;
+        font-family: "Arial";
+      }
+      .ph-widget {
+        position: relative;
+      }
+      .ph-circle {
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        background-color: #ff7f2a;
+        color: white;
+        font-size: 14px;
+        line-height: 18px;
+        padding: 2px;
+        margin-left: -18px;
+        margin-top: 6px;
+        font-weight: bold;
+      }
+      .ph-circle-position {
+        position: absolute;
+      }
+    </style>
     <title>PaperHive iframe</title>
   </head>
   <body>
@@ -62,12 +63,10 @@
     </div>
     -->
 
-    <div class="widget">
+    <div class="ph-widget">
       <a href="paperhive.org" title="Discuss this article on PaperHive">
         <img src="./img/logo-hexagon.svg">
-        <span class="circle circle-position">
-          11
-        </span>
+        <span class="ph-circle ph-circle-position" id="ph-label"></span>
       </a>
     </div>
 
