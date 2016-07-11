@@ -4,6 +4,7 @@
 // -----
 
 
+
 // TODO use webpack (GitHub repo https://github.com/sindresorhus/query-string/blob/master/index.js)
 // parse and decode query string
 function parse(str) {
@@ -46,16 +47,30 @@ function parse(str) {
 	return ret;
 };
 
-
 var type = parse(window.location.search).type;
 var doi = parse(window.location.search).doi;
 
 
+// HTTP request -> GET number of discussions for document with DOI
+//              -> GET link to document
+// TODO replace with fetch (https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
+function httpGet(url) {
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    // if (xhr.readyState == XMLHttpRequest.DONE) {
+    if (this.readyState === 4 && this.status === 200) {
+      // TODO callback(request.responseText);
+      // receive response from PaperHive Server
+      alert(this.responseText);
+    }
+  }
+  request.open('GET', url, true); // true for asynchronous
+  // request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');  // Tells server that this call is made for ajax purposes.
+  request.send(null);
+}
 
-// TODO: GET number of discussions for document with DOI
-// TODO: GET link to document (?)
+httpGet(https://paperhive.org/api/documents/remote?type=doi&id=10.1016/j.neurobiolaging.2014.04.026);
 
-// TODO: Receive response from PaperHive Server
 
 // show data in iframe
 // number of dicussions
