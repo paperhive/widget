@@ -68,19 +68,19 @@ function httpGetJSON(url, callback) {
 
 httpGetJSON(apiUrl + '/documents/remote?type=' + encodeURIComponent(query.type) + '&id=' + encodeURIComponent(query.id), function(documentRevision) {
   httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/discussions', function(discussionsResponse) {
-    var circle = document.getElementById('ph-label');
+    var badge = document.getElementById('badge');
     var number = discussionsResponse.discussions.length;
     if (number.toString().length < 3) {
-      circle.innerHTML = number;
+      badge.innerHTML = number;
     } else if (number.toString().length === 3) {
-      circle.style.fontSize = '10px';
-      circle.innerHTML = number;
+      badge.style.fontSize = '10px';
+      badge.innerHTML = number;
     } else if (number.toString().length === 4) {
       // trim and replace last 3 digits with K
-      circle.innerHTML = (number.toString().slice(0, -3)) + 'K';
+      badge.innerHTML = (number.toString().slice(0, -3)) + 'K';
     } else {
-      circle.style.fontSize = '10px';
-      circle.innerHTML = '>9K';
+      badge.style.fontSize = '10px';
+      badge.innerHTML = '>9K';
     }
   });
 });

@@ -1,23 +1,55 @@
+/* TODO: include normalize */
+
 body {
-  text-align: center;
-  font-family: "Arial";
+  margin: 0;
+  font-family: "Arial"; /* TODO */
 }
+
+
+h1 {
+  font-size: 14px;
+  margin: 3px 0;
+  text-decoration: none;
+}
+
+a {
+  color: #037292;
+  text-decoration: none;
+}
+
 .ph-widget {
+  display: flex;
+}
+
+.ph-logo-container {
+  display: inline-block;
   position: relative;
 }
-.ph-circle {
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
+
+.ph-logo {
+  width: 55px;
+  height: 55px;
+  margin-right: 2px;
+}
+
+.ph-badge {
+  position: absolute;
+  text-align: center;
+  top: 4px;
+  right: 0;
+  border-radius: 11px;
   background-color: #ff7f2a;
   color: white;
-  font-size: 14px;
-  line-height: 18px;
-  padding: 2px;
-  margin-left: -18px;
-  margin-top: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  min-width: 16px;
+  padding: 3px;
   font-weight: bold;
 }
-.ph-circle-position {
-  position: absolute;
+
+.ph-description {
+  margin-left: 10px;
+}
+.ph-description small {
+  color: grey;
 }
