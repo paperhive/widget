@@ -54,14 +54,13 @@ var doi = parse(window.location.search).doi;
 // HTTP request -> GET number of discussions for document with DOI
 //              -> GET link to document
 // TODO replace with fetch (https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
-function httpGet(url) {
+function httpGet(url, callback) {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
     // if (xhr.readyState == XMLHttpRequest.DONE) {
     if (this.readyState === 4 && this.status === 200) {
-      // TODO callback(request.responseText);
+      callback(request.responseText);
       // receive response from PaperHive Server
-      alert(this.responseText);
     }
   }
   request.open('GET', url, true); // true for asynchronous
@@ -69,11 +68,14 @@ function httpGet(url) {
   request.send(null);
 }
 
-httpGet(https://paperhive.org/api/documents/remote?type=doi&id=10.1016/j.neurobiolaging.2014.04.026);
+function getResponse(data) {
+  console.log(data);
+}
+
+httpGet('https://paperhive.org/api/documents/remote?type=doi&id=10.1016/j.neurobiolaging.2014.04.026', getResponse);
 
 
-// show data in iframe
-// number of dicussions
+// show number of discussions in iframe
 window.onload = function() {
   document.getElementById("ph-label").innerHTML = 11;
 }
