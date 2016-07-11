@@ -69,13 +69,11 @@ function httpGetJSON(url, callback) {
 httpGetJSON(apiUrl + '/documents/remote?type=' + encodeURIComponent(query.type) + '&id=' + encodeURIComponent(query.id), function(documentRevision) {
   httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/discussions', function(discussionsResponse) {
     var circle = document.getElementById('ph-label');
-    // var number = discussionsResponse.discussions.length;
-    var number = 11111;
+    var number = discussionsResponse.discussions.length;
     if (number.toString().length < 3) {
       circle.innerHTML = number;
     } else if (number.toString().length === 3) {
-      circle.style.width = '10%';
-      circle.style.height = 'auto';
+      circle.style.fontSize = '10px';
       circle.innerHTML = number;
     } else if (number.toString().length === 4) {
       // trim and replace last 3 digits with K
