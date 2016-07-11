@@ -29,7 +29,6 @@ a {
 .ph-logo {
   width: 55px;
   height: 55px;
-  margin-right: 2px;
 }
 
 .ph-badge {
@@ -37,13 +36,14 @@ a {
   text-align: center;
   top: 4px;
   right: 0;
-  border-radius: 11px;
+  border-radius: 9px;
   background-color: #ff7f2a;
   color: white;
   font-size: 12px;
-  line-height: 16px;
-  min-width: 16px;
-  padding: 3px;
+  line-height: 1;
+  vertical-align: middle;
+  padding: 2px;
+  min-width: 12px;
   font-weight: bold;
 }
 

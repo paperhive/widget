@@ -1,8 +1,3 @@
-// TODO
-// how to resize img / iframe etc. dynamically
-
-// -----
-
 var apiUrl = 'https://paperhive.org/api';
 
 
@@ -66,26 +61,27 @@ function httpGetJSON(url, callback) {
   request.send(null);
 }
 
+function shortenNumber(number) {
+  if (number < 1e3) return number;
+  if (number < 1e6) return Math.floor(number / 1e3) + 'K';
+  if (number < 1e9) return Math.floor(number / 1e6) + 'M';
+  return '>999M';
+}
+
 httpGetJSON(apiUrl + '/documents/remote?type=' + encodeURIComponent(query.type) + '&id=' + encodeURIComponent(query.id), function(documentRevision) {
   httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/discussions', function(discussionsResponse) {
+    var numDiscussions = discussionsResponse.discussions.length;
+
     var badge = document.getElementById('badge');
-    var number = discussionsResponse.discussions.length;
-    if (number.toString().length < 3) {
-      badge.innerHTML = number;
-    } else if (number.toString().length === 3) {
-      badge.style.fontSize = '10px';
-      badge.innerHTML = number;
-    } else if (number.toString().length === 4) {
-      // trim and replace last 3 digits with K
-      badge.innerHTML = (number.toString().slice(0, -3)) + 'K';
-    } else {
-      badge.style.fontSize = '10px';
-      badge.innerHTML = '>9K';
-    }
+    badge.innerHTML = shortenNumber(numDiscussions);
+    var discussions = document.getElementById('discussions');
+    discussions.innerHTML = shortenNumber(numDiscussions);
+
+    var documentLink = 'https://paperhive.org/documents/' + documentRevision.id;
+    document.getElementById('description-link').href = documentLink;
+    document.getElementById('logo-link').href = documentLink;
   });
 });
-
-
 
 
 
