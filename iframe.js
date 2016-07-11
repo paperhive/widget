@@ -1,6 +1,5 @@
 var apiUrl = 'https://paperhive.org/api';
 
-
 // TODO use webpack (GitHub repo https://github.com/sindresorhus/query-string/blob/master/index.js)
 // parse and decode query string
 function parse(str) {
@@ -46,8 +45,7 @@ function parse(str) {
 var query = parse(window.location.search);
 
 
-// HTTP request -> GET number of discussions for document with DOI
-//              -> GET link to document
+// HTTP request -> GET number of discussions for and link to document
 // TODO replace with fetch (https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 function httpGetJSON(url, callback) {
   var request = new XMLHttpRequest();
