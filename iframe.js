@@ -3,6 +3,7 @@
 
 // -----
 
+var apiUrl = 'https://paperhive.org/api';
 
 
 // TODO use webpack (GitHub repo https://github.com/sindresorhus/query-string/blob/master/index.js)
@@ -47,38 +48,33 @@ function parse(str) {
 	return ret;
 };
 
-var type = parse(window.location.search).type;
-var doi = parse(window.location.search).doi;
+var query = parse(window.location.search);
 
 
 // HTTP request -> GET number of discussions for document with DOI
 //              -> GET link to document
 // TODO replace with fetch (https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
-function httpGet(url, callback) {
+function httpGetJSON(url, callback) {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
-    // if (xhr.readyState == XMLHttpRequest.DONE) {
-    if (this.readyState === 4 && this.status === 200) {
-      callback(request.responseText);
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      callback(JSON.parse(request.responseText));
       // receive response from PaperHive Server
     }
   }
-  request.open('GET', url, true); // true for asynchronous
-  // request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');  // Tells server that this call is made for ajax purposes.
+  request.open('GET', url, true);
   request.send(null);
 }
 
-function getResponse(data) {
-  console.log(data);
-}
+httpGetJSON(apiUrl + '/documents/remote?type=' + encodeURIComponent(query.type) + '&id=' + encodeURIComponent(query.id), function(documentRevision) {
+  httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/discussions', function(discussionsResponse) {
+    document.getElementById("ph-label").innerHTML = discussionsResponse.discussions.length;
+  });
+});
 
-httpGet('https://paperhive.org/api/documents/remote?type=doi&id=10.1016/j.neurobiolaging.2014.04.026', getResponse);
 
 
-// show number of discussions in iframe
-window.onload = function() {
-  document.getElementById("ph-label").innerHTML = 11;
-}
+
 
 
 
