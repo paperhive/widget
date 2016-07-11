@@ -1,0 +1,23 @@
+body {
+  text-align: center;
+  font-family: "Arial";
+}
+.ph-widget {
+  position: relative;
+}
+.ph-circle {
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  background-color: #ff7f2a;
+  color: white;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 2px;
+  margin-left: -18px;
+  margin-top: 6px;
+  font-weight: bold;
+}
+.ph-circle-position {
+  position: absolute;
+}
