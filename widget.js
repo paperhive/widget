@@ -1,4 +1,6 @@
-var apiUrl = 'https://paperhive.org/api';
+// var apiUrl = 'https://paperhive.org/api';
+var apiUrl = 'http://localhost:8000';
+
 
 // TODO use webpack (GitHub repo https://github.com/sindresorhus/query-string/blob/master/index.js)
 // parse and decode query string
