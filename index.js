@@ -1,5 +1,6 @@
 // var apiUrl = 'https://paperhive.org/api';
-var apiUrl = 'http://localhost:8000';
+// var apiUrl = 'http://localhost:8000';
+var apiUrl = 'https://staging.paperhive.org/api';
 
 
 // TODO use webpack (GitHub repo https://github.com/sindresorhus/query-string/blob/master/index.js)
