@@ -2,6 +2,11 @@
 // var apiUrl = 'http://localhost:8000';
 var apiUrl = 'https://staging.paperhive.org/api';
 
+var template = require('lodash/template');
+
+var compiled = template('hello <%= user %>!');
+console.log(compiled({ 'user': 'fred' }));
+
 
 // TODO use webpack (GitHub repo https://github.com/sindresorhus/query-string/blob/master/index.js)
 // parse and decode query string
