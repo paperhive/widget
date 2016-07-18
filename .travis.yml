@@ -6,6 +6,6 @@ script:
   - npm run build
 addons:
   artifacts:
-    s3_region: "eu-central-1"
     paths:
       - build
+    target_paths: $TRAVIS_BUILD_NUMBER-${TRAVIS_COMMIT:0:8}
