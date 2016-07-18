@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/paperhive/paperhive-widget.svg?branch=master)](https://travis-ci.org/paperhive/paperhive-widget)
+# PaperHive widget [![Build Status](https://travis-ci.org/paperhive/paperhive-widget.svg?branch=master)](https://travis-ci.org/paperhive/paperhive-widget)
 
 ```
 <iframe
-  src="http://localhost:9000/?type=arxiv&id=1603.00059"
+  src="https://staging.paperhive.org/widget/?type=arxiv&id=1603.00059"
   width="100%"
   height="55px"
   style="border:none;overflow:hidden;width:100%;"
