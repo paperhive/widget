@@ -4,7 +4,7 @@
   "description": "PaperHive widget",
   "main": "index.js",
   "scripts": {
-    "build:js": "webpack",
+    "build:js": "webpack --optimize-minimize",
     "build": "npm run build:js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/paperhive/paperhive-widget.git"
   },
-  "author": "PaperHive",
+  "author": "Jennifer Gebske <jennifer@paperhive.org>",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/paperhive/paperhive-widget/issues"
@@ -22,6 +22,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "lodash": "^4.13.1"
+    "lodash": "^4.13.1",
+    "query-string": "^4.2.2"
   }
 }
