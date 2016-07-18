@@ -11,6 +11,10 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.ejs$/,
+        loader: 'ejs-loader'
+      },
+      {
         test: /\.html$/,
         loader: extractHtml.extract('html-loader'),
       },
@@ -20,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'url',
+        loaders: ['url', 'svgo-loader?' + JSON.stringify({plugins: []}) ],
       },
     ]
   },

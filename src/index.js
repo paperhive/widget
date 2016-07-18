@@ -1,33 +1,30 @@
-var template = require('lodash/template');
 var queryString = require('query-string');
 
 require('./index.html');
 require('./index.scss');
 var utils = require('./utils.js');
+var logo = require('../static/img/logo-hexagon.svg');
 
 var apiUrl = 'https://paperhive.org/api';
 
-var compiled = template('hello <%= user %>!');
-console.log(compiled({ 'user': 'fred' }));
+var template = require('./index.ejs');
+
+function updateHtml(data) {
+  document.body.innerHTML = template(data);
+}
 
 var query = queryString.parse(window.location.search);
 
 utils.httpGetJSON(apiUrl + '/documents/remote?' + queryString.stringify({type: query.type, id: query.id}), function(documentRevision) {
   utils.httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/discussions', function(discussionsResponse) {
-    var numDiscussions = discussionsResponse.discussions.length;
-
-    var badge = document.getElementById('badge');
-    badge.innerHTML = utils.shortenNumber(numDiscussions);
-    var discussions = document.getElementById('discussions');
-    discussions.innerHTML = utils.shortenNumber(numDiscussions);
-
-    var documentLink = 'https://paperhive.org/documents/' + documentRevision.id;
-    document.getElementById('description-link').href = documentLink;
-    document.getElementById('logo-link').href = documentLink;
+    updateHtml({
+      logo: logo,
+      numDiscussions: discussionsResponse.discussions.length,
+      numHives: 15,
+      url: 'https://paperhive.org/documents/' + documentRevision.id,
+    });
   });
 });
-
-
 
 
 
