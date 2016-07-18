@@ -6,5 +6,6 @@ script:
   - npm run build
 addons:
   artifacts:
+    s3_region: "eu-central-1"
     paths:
       - build
