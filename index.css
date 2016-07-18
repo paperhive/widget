@@ -5,7 +5,7 @@ body {
   font-family: "Arial"; /* TODO */
 }
 
-h1 {
+p {
   font-size: 14px;
   margin: 3px 0;
   text-decoration: none;
@@ -26,8 +26,8 @@ a {
 }
 
 .ph-logo {
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
 }
 
 .ph-badge {
