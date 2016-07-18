@@ -1,11 +1,11 @@
-// var apiUrl = 'https://paperhive.org/api';
-// var apiUrl = 'http://localhost:8000';
-var apiUrl = 'https://staging.paperhive.org/api';
-
 var template = require('lodash/template');
 var queryString = require('query-string');
 
+require('./index.html');
+require('./index.scss');
 var utils = require('./utils.js');
+
+var apiUrl = 'https://paperhive.org/api';
 
 var compiled = template('hello <%= user %>!');
 console.log(compiled({ 'user': 'fred' }));
