@@ -4,3 +4,7 @@ node_js:
 sudo: false
 script:
   - npm run build
+addons:
+  artifacts:
+    paths:
+      - build
