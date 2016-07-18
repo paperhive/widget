@@ -1,0 +1,38 @@
+{
+  "name": "paperhive-widget",
+  "version": "1.0.0",
+  "description": "PaperHive widget",
+  "main": "index.js",
+  "scripts": {
+    "build:js": "webpack --optimize-minimize",
+    "build": "npm run build:js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paperhive/paperhive-widget.git"
+  },
+  "author": "Jennifer Gebske <jennifer@paperhive.org>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/paperhive/paperhive-widget/issues"
+  },
+  "homepage": "https://github.com/paperhive/paperhive-widget#readme",
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "ejs-loader": "^0.3.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.3",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "svgo-loader": "^1.1.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "query-string": "^4.2.2"
+  }
+}

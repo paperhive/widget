@@ -1,0 +1,20 @@
+<div class="ph-widget">
+  <a class="ph-logo-container" target="_blank" title="Read and discuss on PaperHive" href="<%= url %>">
+    <img class="ph-logo" src="<%= logo %>">
+    <% if (numDiscussions) { %>
+      <span class="ph-badge"><%= numDiscussions %></span>
+    <% } %>
+  </a>
+  <div class="ph-description">
+    <p><a target="_blank" href="<%= url %>">Read and discuss on PaperHive</a></p>
+    <small>
+      <% if (numDiscussions) { %>
+        <%= numDiscussions %> discussions
+      <% } %>
+      <% if (numDiscussions && numHives) { %>&middot;<% } %>
+      <% if (numHives) { %>
+        <%= numHives %> hives
+      <% } %>
+    </small>
+  </div>
+</div>

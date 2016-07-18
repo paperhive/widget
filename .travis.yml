@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "node"
+sudo: false
+script:
+  - npm run build
+addons:
+  artifacts:
+    paths:
+      - build
+    target_paths: $TRAVIS_BUILD_NUMBER-${TRAVIS_COMMIT:0:8}
