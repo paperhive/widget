@@ -15,14 +15,42 @@ function updateHtml(data) {
 
 var query = queryString.parse(window.location.search);
 
-utils.httpGetJSON(apiUrl + '/documents/remote?' + queryString.stringify({type: query.type, id: query.id}), function(documentRevision) {
-  utils.httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/discussions', function(discussionsResponse) {
-    utils.httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/hivers', function(hiversResponse) {
+utils.httpGetJSON(apiUrl + '/documents/remote?' + queryString.stringify({type: query.type, id: query.id}), function(documentErr, documentResponse) {
+  if (documentErr) {
+    console.error(documentErr);
+    return;
+  };
+  if (documentResponse.status === 404) {
+    console.log('Document with type ' + query.type + ' and id ' + query.id + ' not found on PaperHive');
+    return;
+  }
+  if (documentResponse.status !== 200) {
+    console.error('Expected status code 200 (got ' + documentResponse.status + ')');
+    return;
+  }
+  utils.httpGetJSON(apiUrl + '/documents/' +  documentResponse.body.id + '/discussions', function(discussionsErr, discussionsResponse) {
+    if (documentErr) {
+      console.error(documentErr);
+      return;
+    };
+    if (documentResponse.status !== 200) {
+      console.error('Expected status code 200 (got ' + documentResponse.status + ')');
+      return;
+    }
+    utils.httpGetJSON(apiUrl + '/documents/' +  documentResponse.body.id + '/hivers', function(hiversErr, hiversResponse) {
+      if (documentErr) {
+        console.error(documentErr);
+        return;
+      };
+      if (documentResponse.status !== 200) {
+        console.error('Expected status code 200 (got ' + documentResponse.status + ')');
+        return;
+      }
       updateHtml({
         logo: logo,
-        numDiscussions: discussionsResponse.discussions.length,
-        numHives: hiversResponse.hivers.length,
-        url: 'https://paperhive.org/documents/' + documentRevision.id,
+        numDiscussions: discussionsResponse.body.discussions.length,
+        numHives: hiversResponse.body.hivers.length,
+        url: 'https://paperhive.org/documents/' + documentResponse.body.id,
       });
     });
   });
