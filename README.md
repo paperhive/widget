@@ -2,7 +2,7 @@
 
 ```
 <iframe
-  src="https://staging.paperhive.org/widget/?type=arxiv&id=1603.00059"
+  src="https://staging.paperhive.org/widget/#type=arxiv&id=1603.00059"
   width="100%"
   height="55px"
   style="border:none;overflow:hidden;width:100%;"

@@ -13,7 +13,7 @@ function updateHtml(data) {
   document.body.innerHTML = template(data);
 }
 
-var query = queryString.parse(window.location.search);
+var query = queryString.parse(window.location.hash);
 
 utils.httpGetJSON(apiUrl + '/documents/remote?' + queryString.stringify({type: query.type, id: query.id}), function(documentErr, documentResponse) {
   if (documentErr) {
