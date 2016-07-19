@@ -10,15 +10,20 @@ module.exports.shortenNumber = function(number) {
 // TODO replace with fetch (https://developer.mozilla.org/en/docs/Web/API/Fetch_API)
 module.exports.httpGetJSON = function(url, callback) {
   var request = new XMLHttpRequest();
-  request.onreadystatechange = function() {
-    if (this.readyState === XMLHttpRequest.DONE) {
-      // receive response from PaperHive Server
-      callback(undefined, JSON.parse(request.responseText));
-    } else {
-      callback(new Error('descriptive error message'));
+  request.onload = function() {
+    // receive response from PaperHive Server
+    var body;
+    try {
+      body = JSON.parse(request.responseText);
+    } catch (error) {
+      callback(new Error('could not parse JSON'));
+      return;
     }
+    callback(undefined, {status: this.status, body: body});
   }
-
+  request.onerror = function() {
+    callback(new Error('HTTP request failed (possibly a network error)'));
+  }
   request.open('GET', url, true);
   request.send(null);
 }
