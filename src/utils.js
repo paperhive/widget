@@ -11,11 +11,14 @@ module.exports.shortenNumber = function(number) {
 module.exports.httpGetJSON = function(url, callback) {
   var request = new XMLHttpRequest();
   request.onreadystatechange = function() {
-    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      callback(JSON.parse(request.responseText));
+    if (this.readyState === XMLHttpRequest.DONE) {
       // receive response from PaperHive Server
+      callback(undefined, JSON.parse(request.responseText));
+    } else {
+      callback(new Error('descriptive error message'));
     }
   }
+
   request.open('GET', url, true);
   request.send(null);
 }
