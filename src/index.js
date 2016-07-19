@@ -17,11 +17,13 @@ var query = queryString.parse(window.location.search);
 
 utils.httpGetJSON(apiUrl + '/documents/remote?' + queryString.stringify({type: query.type, id: query.id}), function(documentRevision) {
   utils.httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/discussions', function(discussionsResponse) {
-    updateHtml({
-      logo: logo,
-      numDiscussions: discussionsResponse.discussions.length,
-      numHives: 15,
-      url: 'https://paperhive.org/documents/' + documentRevision.id,
+    utils.httpGetJSON(apiUrl + '/documents/' +  documentRevision.id + '/hivers', function(hiversResponse) {
+      updateHtml({
+        logo: logo,
+        numDiscussions: discussionsResponse.discussions.length,
+        numHives: hiversResponse.hivers.length,
+        url: 'https://paperhive.org/documents/' + documentRevision.id,
+      });
     });
   });
 });
