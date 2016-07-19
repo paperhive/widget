@@ -9,11 +9,11 @@
     <p><a target="_blank" href="<%= url %>">Read and discuss on PaperHive</a></p>
     <small>
       <% if (numDiscussions) { %>
-        <%= numDiscussions %> discussions
+        <%= numDiscussions %> discussion<%= numDiscussions > 1 ? 's' : '' %>
       <% } %>
       <% if (numDiscussions && numHives) { %>&middot;<% } %>
       <% if (numHives) { %>
-        <%= numHives %> hives
+        <%= numHives %> hive<%= numHives > 1 ? 's' : '' %>
       <% } %>
     </small>
   </div>
