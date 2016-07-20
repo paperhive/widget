@@ -6,15 +6,17 @@
     <% } %>
   </a>
   <div class="ph-description">
-    <p><a target="_blank" href="<%= url %>">Read and discuss on PaperHive</a></p>
-    <small>
-      <% if (numDiscussions) { %>
-        <%= numDiscussions %> discussion<%= numDiscussions > 1 ? 's' : '' %>
-      <% } %>
-      <% if (numDiscussions && numHives) { %>&middot;<% } %>
-      <% if (numHives) { %>
-        <%= numHives %> hive<%= numHives > 1 ? 's' : '' %>
-      <% } %>
-    </small>
+    <h1><a target="_blank" href="<%= url %>">Read and discuss on PaperHive</a></h1>
+    <% if (numDiscussions || numHives) { %>
+      <small>
+        <% if (numDiscussions) { %>
+          <%= numDiscussions %> discussion<%= numDiscussions > 1 ? 's' : '' %>
+        <% } %>
+        <% if (numDiscussions && numHives) { %>&middot;<% } %>
+        <% if (numHives) { %>
+          <%= numHives %> hive<%= numHives > 1 ? 's' : '' %>
+        <% } %>
+      </small>
+    <% } %>
   </div>
 </div>
