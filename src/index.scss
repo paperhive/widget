@@ -1,14 +1,19 @@
 /* TODO: include normalize */
 
+$logosize: 40px;
+$fontsizeH1: 14px;
+$fontsizeBadge: 12px;
+
 body {
   margin: 0;
   font-family: "Arial"; /* TODO */
 }
 
-p {
-  font-size: 14px;
+h1 {
+  font-size: $fontsizeH1;
   margin: 3px 0;
   text-decoration: none;
+  font-weight: normal;
 }
 
 a {
@@ -26,8 +31,8 @@ a {
 }
 
 .ph-logo {
-  width: 40px;
-  height: 40px;
+  width: $logosize;
+  height: $logosize;
 }
 
 .ph-badge {
@@ -37,12 +42,12 @@ a {
   right: 0;
   border-radius: 9px;
   background-color: #ff7f2a;
-  color: white;
-  font-size: 12px;
+  color: #ffffff;
+  font-size: $fontsizeBadge;
   line-height: 1;
   vertical-align: middle;
   padding: 2px;
-  min-width: 12px;
+  min-width: $fontsizeBadge;
   font-weight: bold;
 }
 
@@ -51,4 +56,11 @@ a {
 }
 .ph-description small {
   color: grey;
+}
+
+.ph-no-data {
+  display: flex;
+  align-items: center;
+  height: $logosize;
+  margin-left: -4px;
 }
