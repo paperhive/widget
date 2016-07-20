@@ -1,8 +1,9 @@
 /* TODO: include normalize */
 
-$logosize: 40px;
-$fontsizeH1: 14px;
-$fontsizeBadge: 12px;
+$logoSize: 40px;
+$h1FontSize: 14px;
+$badgeFontSize: 12px;
+$badgePadding: 2px;
 
 body {
   margin: 0;
@@ -10,7 +11,7 @@ body {
 }
 
 h1 {
-  font-size: $fontsizeH1;
+  font-size: $h1FontSize;
   margin: 3px 0;
   text-decoration: none;
   font-weight: normal;
@@ -23,16 +24,19 @@ a {
 
 .ph-widget {
   display: flex;
+  align-items: center;
 }
 
 .ph-logo-container {
   display: inline-block;
   position: relative;
+  // the a element's height is larger than the contained img (for unknown reasons)
+  height: $logoSize;
 }
 
 .ph-logo {
-  width: $logosize;
-  height: $logosize;
+  width: $logoSize;
+  height: $logoSize;
 }
 
 .ph-badge {
@@ -40,27 +44,20 @@ a {
   text-align: center;
   top: 4px;
   right: 0;
-  border-radius: 9px;
+  border-radius: ($badgeFontSize + 2 * $badgePadding) / 2;
   background-color: #ff7f2a;
-  color: #ffffff;
-  font-size: $fontsizeBadge;
+  color: white;
+  font-size: $badgeFontSize;
   line-height: 1;
   vertical-align: middle;
-  padding: 2px;
-  min-width: $fontsizeBadge;
+  padding: $badgePadding;
+  min-width: $badgeFontSize;
   font-weight: bold;
 }
 
 .ph-description {
-  margin-left: 10px;
+  margin-left: 7px;
 }
 .ph-description small {
   color: grey;
-}
-
-.ph-no-data {
-  display: flex;
-  align-items: center;
-  height: $logosize;
-  margin-left: -4px;
 }

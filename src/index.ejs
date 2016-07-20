@@ -6,8 +6,8 @@
     <% } %>
   </a>
   <div class="ph-description">
+    <h1><a target="_blank" href="<%= url %>">Read and discuss on PaperHive</a></h1>
     <% if (numDiscussions || numHives) { %>
-      <h1><a target="_blank" href="<%= url %>">Read and discuss on PaperHive</a></h1>
       <small>
         <% if (numDiscussions) { %>
           <%= numDiscussions %> discussion<%= numDiscussions > 1 ? 's' : '' %>
@@ -17,10 +17,6 @@
           <%= numHives %> hive<%= numHives > 1 ? 's' : '' %>
         <% } %>
       </small>
-    <% } else { %>
-      <div class="ph-no-data">
-        <h1><a target="_blank" href="<%= url %>">Read and discuss on PaperHive</a></h1>
-      </div>
     <% } %>
   </div>
 </div>
