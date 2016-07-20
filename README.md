@@ -1,6 +1,6 @@
 # PaperHive widget [![Build Status](https://travis-ci.org/paperhive/paperhive-widget.svg?branch=master)](https://travis-ci.org/paperhive/paperhive-widget)
 
-![example](https://cloud.githubusercontent.com/assets/3831683/16951201/52300ab0-4dc4-11e6-8257-7be9e935e8c5.png)
+![example](https://cloud.githubusercontent.com/assets/3831683/16989765/b8f91a4e-4e95-11e6-84fc-73005b2fbcf0.png)
 
 ```
 <iframe
