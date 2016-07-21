@@ -15,43 +15,48 @@ function updateHtml(data) {
 function getData() {
   const query = queryString.parse(window.location.hash);
 
-  httpGetJSON(apiUrl + '/documents/remote?' + queryString.stringify({type: query.type, id: query.id}), (documentErr, documentResponse) => {
+  const remoteUrl = `${apiUrl}/documents/remote?${
+    queryString.stringify({ type: query.type, id: query.id })
+  }`;
+  httpGetJSON(remoteUrl, (documentErr, documentResponse) => {
     if (documentErr) {
       console.error(documentErr);
       return;
-    };
+    }
     if (documentResponse.status === 404) {
-      console.log('Document with type ' + query.type + ' and id ' + query.id + ' not found on PaperHive');
+      console.log(`Document with type ${query.type} and id ${query.id} not found on PaperHive`);
       return;
     }
     if (documentResponse.status !== 200) {
-      console.error('Expected status code 200 (got ' + documentResponse.status + ')');
+      console.error(`Expected status code 200 (got ${documentResponse.status})`);
       return;
     }
-    httpGetJSON(apiUrl + '/documents/' +  documentResponse.body.id + '/discussions', (discussionsErr, discussionsResponse) => {
+    const discussionsUrl = `${apiUrl}/documents/${documentResponse.body.id}/discussions`;
+    httpGetJSON(discussionsUrl, (discussionsErr, discussionsResponse) => {
       if (documentErr) {
         console.error(documentErr);
         return;
-      };
+      }
       if (documentResponse.status !== 200) {
-        console.error('Expected status code 200 (got ' + documentResponse.status + ')');
+        console.error(`Expected status code 200 (got ${documentResponse.status})`);
         return;
       }
-      httpGetJSON(apiUrl + '/documents/' +  documentResponse.body.id + '/hivers', (hiversErr, hiversResponse) => {
+      const hiversUrl = `${apiUrl}/documents/${documentResponse.body.id}/hivers`;
+      httpGetJSON(hiversUrl, (hiversErr, hiversResponse) => {
         if (documentErr) {
           console.error(documentErr);
           return;
-        };
+        }
         if (documentResponse.status !== 200) {
-          console.error('Expected status code 200 (got ' + documentResponse.status + ')');
+          console.error(`Expected status code 200 (got ${documentResponse.status})`);
           return;
         }
         updateHtml({
-          logo: logo,
+          logo,
           numDiscussions: discussionsResponse.body.discussions.length,
           numHives: hiversResponse.body.hivers.length,
           shortenNumber,
-          url: 'https://paperhive.org/documents/' + documentResponse.body.id,
+          url: `https://paperhive.org/documents/${documentResponse.body.id}`,
         });
       });
     });
