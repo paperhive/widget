@@ -1,63 +1,69 @@
-/* TODO: include normalize */
+// TODO: include normalize
 
-$logoSize: 40px;
-$h1FontSize: 14px;
-$badgeFontSize: 12px;
-$badgePadding: 2px;
+$badge-color: #ff7f2a;
+$badge-font-size: 12px;
+$badge-padding: 2px;
+$grey: #808080;
+$h1-font-size: 14px;
+$link-color: #037292;
+$logo-size: 40px;
+$white: #fff;
 
 body {
+  // TODO
+  font-family: 'Arial';
   margin: 0;
-  font-family: "Arial"; /* TODO */
 }
 
 h1 {
-  font-size: $h1FontSize;
+  font-size: $h1-font-size;
+  font-weight: normal;
   margin: 3px 0;
   text-decoration: none;
-  font-weight: normal;
 }
 
 a {
-  color: #037292;
+  color: $link-color;
   text-decoration: none;
 }
 
 .ph-widget {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .ph-logo-container {
   display: inline-block;
-  position: relative;
   // the a element's height is larger than the contained img (for unknown reasons)
-  height: $logoSize;
+  height: $logo-size;
+  position: relative;
 }
 
 .ph-logo {
-  width: $logoSize;
-  height: $logoSize;
+  height: $logo-size;
+  width: $logo-size;
 }
 
 .ph-badge {
+  background-color: $badge-color;
+  border-radius: ($badge-font-size + 2 * $badge-padding) / 2;
+  color: $white;
+  font-size: $badge-font-size;
+  font-weight: bold;
+  line-height: 1;
+  min-width: $badge-font-size;
+  padding: $badge-padding;
   position: absolute;
+  right: 0;
   text-align: center;
   top: 4px;
-  right: 0;
-  border-radius: ($badgeFontSize + 2 * $badgePadding) / 2;
-  background-color: #ff7f2a;
-  color: white;
-  font-size: $badgeFontSize;
-  line-height: 1;
   vertical-align: middle;
-  padding: $badgePadding;
-  min-width: $badgeFontSize;
-  font-weight: bold;
 }
 
 .ph-description {
   margin-left: 7px;
-}
-.ph-description small {
-  color: grey;
+
+  small {
+    color: $grey;
+  }
 }

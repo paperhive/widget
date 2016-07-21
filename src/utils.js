@@ -19,7 +19,7 @@ export function httpGetJSON(url, callback) {
       callback(new Error('could not parse JSON'));
       return;
     }
-    callback(undefined, { status: this.status, body });
+    callback(undefined, { status: request.status, body });
   };
   request.onerror = () => {
     callback(new Error('HTTP request failed (possibly a network error)'));
