@@ -11,3 +11,4 @@ addons:
     paths:
       - build
     target_paths: $TRAVIS_BUILD_NUMBER-${TRAVIS_COMMIT:0:8}
+  sauce_connect: true
