@@ -12,7 +12,6 @@ const config = {
 
 if (process.env.TRAVIS_JOB_NUMBER) {
   lodash.assign(config.test_settings.default, {
-    launch_url: 'http://ondemand.saucelabs.com:80',
     selenium_port: 80,
     selenium_host: 'ondemand.saucelabs.com',
     username: process.env.SAUCE_USERNAME,
