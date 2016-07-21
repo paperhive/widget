@@ -20,34 +20,41 @@ function getData() {
   }`;
   httpGetJSON(remoteUrl, (documentErr, documentResponse) => {
     if (documentErr) {
+      // eslint-disable-next-line no-console
       console.error(documentErr);
       return;
     }
     if (documentResponse.status === 404) {
+      // eslint-disable-next-line no-console
       console.log(`Document with type ${query.type} and id ${query.id} not found on PaperHive`);
       return;
     }
     if (documentResponse.status !== 200) {
+      // eslint-disable-next-line no-console
       console.error(`Expected status code 200 (got ${documentResponse.status})`);
       return;
     }
     const discussionsUrl = `${apiUrl}/documents/${documentResponse.body.id}/discussions`;
     httpGetJSON(discussionsUrl, (discussionsErr, discussionsResponse) => {
       if (documentErr) {
+        // eslint-disable-next-line no-console
         console.error(documentErr);
         return;
       }
       if (documentResponse.status !== 200) {
+        // eslint-disable-next-line no-console
         console.error(`Expected status code 200 (got ${documentResponse.status})`);
         return;
       }
       const hiversUrl = `${apiUrl}/documents/${documentResponse.body.id}/hivers`;
       httpGetJSON(hiversUrl, (hiversErr, hiversResponse) => {
         if (documentErr) {
+          // eslint-disable-next-line no-console
           console.error(documentErr);
           return;
         }
         if (documentResponse.status !== 200) {
+          // eslint-disable-next-line no-console
           console.error(`Expected status code 200 (got ${documentResponse.status})`);
           return;
         }
