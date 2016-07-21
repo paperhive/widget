@@ -10,11 +10,11 @@
     <% if (numDiscussions || numHives) { %>
       <small>
         <% if (numDiscussions) { %>
-          <%= numDiscussions %> discussion<%= numDiscussions > 1 ? 's' : '' %>
+          <%= shortenNumber(numDiscussions) %> discussion<%= numDiscussions > 1 ? 's' : '' %>
         <% } %>
         <% if (numDiscussions && numHives) { %>&middot;<% } %>
         <% if (numHives) { %>
-          <%= numHives %> hive<%= numHives > 1 ? 's' : '' %>
+          <%= shortenNumber(numHives) %> hive<%= numHives > 1 ? 's' : '' %>
         <% } %>
       </small>
     <% } %>

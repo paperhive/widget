@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/paperhive/paperhive-widget#readme",
   "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
     "css-loader": "^0.23.1",
     "ejs-loader": "^0.3.0",
     "extract-text-webpack-plugin": "^1.0.1",

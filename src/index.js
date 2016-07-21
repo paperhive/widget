@@ -1,22 +1,21 @@
-var queryString = require('query-string');
+import queryString from 'query-string';
 
-require('./index.html');
-require('./index.scss');
-var utils = require('./utils.js');
-var logo = require('../static/img/logo-hexagon.svg');
+import './index.html';
+import './index.scss';
+import { httpGetJSON, shortenNumber } from './utils.js';
+import logo from '../static/img/logo-hexagon.svg';
+import template from './index.ejs';
 
-var apiUrl = 'https://paperhive.org/api';
-
-var template = require('./index.ejs');
+const apiUrl = 'https://paperhive.org/api';
 
 function updateHtml(data) {
   document.body.innerHTML = template(data);
 }
 
 function getData() {
-  var query = queryString.parse(window.location.hash);
+  const query = queryString.parse(window.location.hash);
 
-  utils.httpGetJSON(apiUrl + '/documents/remote?' + queryString.stringify({type: query.type, id: query.id}), function(documentErr, documentResponse) {
+  httpGetJSON(apiUrl + '/documents/remote?' + queryString.stringify({type: query.type, id: query.id}), (documentErr, documentResponse) => {
     if (documentErr) {
       console.error(documentErr);
       return;
@@ -29,7 +28,7 @@ function getData() {
       console.error('Expected status code 200 (got ' + documentResponse.status + ')');
       return;
     }
-    utils.httpGetJSON(apiUrl + '/documents/' +  documentResponse.body.id + '/discussions', function(discussionsErr, discussionsResponse) {
+    httpGetJSON(apiUrl + '/documents/' +  documentResponse.body.id + '/discussions', (discussionsErr, discussionsResponse) => {
       if (documentErr) {
         console.error(documentErr);
         return;
@@ -38,7 +37,7 @@ function getData() {
         console.error('Expected status code 200 (got ' + documentResponse.status + ')');
         return;
       }
-      utils.httpGetJSON(apiUrl + '/documents/' +  documentResponse.body.id + '/hivers', function(hiversErr, hiversResponse) {
+      httpGetJSON(apiUrl + '/documents/' +  documentResponse.body.id + '/hivers', (hiversErr, hiversResponse) => {
         if (documentErr) {
           console.error(documentErr);
           return;
@@ -51,6 +50,7 @@ function getData() {
           logo: logo,
           numDiscussions: discussionsResponse.body.discussions.length,
           numHives: hiversResponse.body.hivers.length,
+          shortenNumber,
           url: 'https://paperhive.org/documents/' + documentResponse.body.id,
         });
       });

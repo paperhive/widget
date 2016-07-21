@@ -15,6 +15,14 @@ module.exports = {
         loader: 'ejs-loader'
       },
       {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015']
+        }
+      },
+      {
         test: /\.html$/,
         loader: extractHtml.extract('html-loader'),
       },
