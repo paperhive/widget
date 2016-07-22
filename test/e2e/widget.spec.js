@@ -16,8 +16,10 @@ module.exports = {
       .assert.elementPresent('img')
       .assert.elementPresent('.ph-badge')
       .assert.elementPresent('h1')
-      .assert.containsText('h1 > a', 'Read and discuss on PaperHive')
-      .end();
+      .assert.containsText('h1 > a', 'Read and discuss on PaperHive');
+    browser.expect.element('.ph-description > small').text.to.match(/\d+ discussions?/);
+    browser.expect.element('.ph-description > small').text.to.match(/\d+ hives?/);
+    browser.end();
   },
   'doi does not exist': browser => {
     browser
