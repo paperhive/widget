@@ -30,11 +30,11 @@ if (process.env.TRAVIS_JOB_NUMBER) {
   };
   const browsers = {
     // android: { browserName: 'Browser', platform: 'Android' },
-    chrome: { browserName: 'chrome', platform: 'Windows 10' },
-    edge: { browserName: 'MicrosoftEdge' },
-    firefox: { browserName: 'firefox', platform: 'Windows 10' },
-    ie: { browserName: 'internet explorer', platform: 'Windows 10' },
-    safari: { browserName: 'safari', platform: 'OS X 10.11' },
+    chrome: { browserName: 'chrome', version: 'latest', platform: 'Windows 10' },
+    edge: { browserName: 'MicrosoftEdge', version: 'latest', platform: 'Windows 10' },
+    firefox: { browserName: 'firefox', version: 'latest', platform: 'Windows 10' },
+    ie: { browserName: 'internet explorer', version: 'latest', platform: 'Windows 10' },
+    safari: { browserName: 'safari', version: 'latest', platform: 'OS X 10.11' },
     safariIOS: {
       browserName: 'Safari',
       deviceName: 'iPhone 6 Simulator',
