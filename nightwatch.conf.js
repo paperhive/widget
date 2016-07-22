@@ -16,12 +16,20 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     selenium_host: 'ondemand.saucelabs.com',
     username: process.env.SAUCE_USERNAME,
     access_key: process.env.SAUCE_ACCESS_KEY,
-    desiredCapabilities: {
-      browserName: 'chrome',
-      build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
-      'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-      tags: ['paperhive-widget'],
-    },
+  });
+
+  // construct multiple test_settings (aka environments)
+  const defaultDesiredCapabilities = {
+    build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+    tags: ['paperhive-widget'],
+  };
+  const browsers = {
+    chrome: { browserName: 'chrome' },
+  };
+  lodash.forEach(browsers, (value, key) => {
+    const desiredCapabilities = lodash.assign({}, defaultDesiredCapabilities, value);
+    config.test_settings[key] = { desiredCapabilities };
   });
 } else {
   config.selenium = {
