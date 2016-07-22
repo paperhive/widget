@@ -20,8 +20,7 @@ if (process.env.TRAVIS_JOB_NUMBER) {
       browserName: 'chrome',
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-      tags: ['widget'],
-      name: 'PaperHive widget (chrome)',
+      tags: ['paperhive-widget'],
     },
   });
 } else {
