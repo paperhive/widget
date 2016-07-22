@@ -29,7 +29,12 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     tags: ['paperhive-widget'],
   };
   const browsers = {
-    // android: { browserName: 'Browser', platform: 'Android' },
+    android: {
+      browserName: 'Browser',
+      deviceName: 'Android Emulator',
+      platformVersion: '5.1',
+      platformName: 'Android',
+    },
     chrome: { browserName: 'chrome', version: 'latest', platform: 'Windows 10' },
     edge: { browserName: 'MicrosoftEdge', version: 'latest', platform: 'Windows 10' },
     firefox: { browserName: 'firefox', version: 'latest', platform: 'Windows 10' },
@@ -37,7 +42,7 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     safari: { browserName: 'safari', version: 'latest', platform: 'OS X 10.11' },
     safariIOS: {
       browserName: 'Safari',
-      deviceName: 'iPhone 6 Simulator',
+      deviceName: 'iPhone Simulator',
       platformVersion: '9.3',
       platformName: 'iOS',
     },
