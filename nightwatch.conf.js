@@ -35,7 +35,12 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     firefox: { browserName: 'firefox', platform: 'Windows 10' },
     ie: { browserName: 'internet explorer', platform: 'Windows 10' },
     safari: { browserName: 'safari', platform: 'OS X 10.11' },
-    // safariIOS: { browserName: 'safari', platform: 'iOS' },
+    safariIOS: {
+      browserName: 'Safari',
+      deviceName: 'iPhone 6 Simulator',
+      platformVersion: '9.3',
+      platformName: 'iOS',
+    },
   };
   lodash.forEach(browsers, (value, key) => {
     const desiredCapabilities = lodash.assign({}, defaultDesiredCapabilities, value);
