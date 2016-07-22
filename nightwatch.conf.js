@@ -25,7 +25,13 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     tags: ['paperhive-widget'],
   };
   const browsers = {
+    android: { browserName: 'Browser', platformName: 'Android' },
     chrome: { browserName: 'chrome' },
+    edge: { browserName: 'MicrosoftEdge' },
+    firefox: { browserName: 'firefox' },
+    ie: { browserName: 'internet explorer' },
+    safari: { browserName: 'safari' },
+    safariIOS: { browserName: 'safari', platformName: 'iOS' },
   };
   lodash.forEach(browsers, (value, key) => {
     const desiredCapabilities = lodash.assign({}, defaultDesiredCapabilities, value);
