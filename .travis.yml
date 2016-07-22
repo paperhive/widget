@@ -5,9 +5,10 @@ sudo: false
 script:
   - npm run lint
   - npm run build
-  #- npm run test
+  - npm run test
 addons:
   artifacts:
     paths:
       - build
     target_paths: $TRAVIS_BUILD_NUMBER-${TRAVIS_COMMIT:0:8}
+  sauce_connect: true

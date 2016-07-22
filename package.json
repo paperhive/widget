@@ -6,10 +6,12 @@
   "scripts": {
     "build:js": "webpack --optimize-minimize",
     "build": "npm run build:js",
+    "install:selenium": "npm install selenium-standalone && selenium-standalone install --version=2.53.1",
     "lint:js": "eslint src/ test/",
     "lint:sass": "sass-lint -v --max-warnings 1",
     "lint": "npm-run-all lint:*",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:e2e": "nightwatch -c nightwatch.conf.js `[ ! -z \"$TRAVIS_JOB_NUMBER\" ] && echo '-e android,chrome,edge,firefox,ie,safari,safariIOS'`",
+    "test": "npm-run-all test:*",
     "watch:js": "webpack --progress --colors --watch",
     "watch:server": "live-server --open='#type=arxiv&id=1603.00059' build",
     "watch": "npm-run-all --parallel watch:*"
@@ -38,6 +40,7 @@
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.3",
     "live-server": "^1.0.0",
+    "nightwatch": "^0.9.5",
     "node-sass": "^3.8.0",
     "npm-run-all": "^2.3.0",
     "sass-lint": "^1.8.2",
