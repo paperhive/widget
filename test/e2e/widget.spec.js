@@ -11,7 +11,7 @@ module.exports = {
   'doi exists': browser => {
     browser
       .url(`${browser.launch_url}#type=doi&id=10.1016/j.neurobiolaging.2016.04.004`)
-      .waitForElementVisible('.ph-widget', 1000)
+      .waitForElementVisible('.ph-widget', 2000)
       .assert.title('PaperHive widget')
       .assert.elementPresent('img')
       .assert.elementPresent('.ph-badge')
