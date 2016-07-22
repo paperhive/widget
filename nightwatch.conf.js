@@ -34,7 +34,7 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     edge: { browserName: 'MicrosoftEdge' },
     firefox: { browserName: 'firefox' },
     ie: { browserName: 'internet explorer' },
-    safari: { browserName: 'safari' },
+    safari: { browserName: 'safari', platformName: 'OS X 10.11' },
     // safariIOS: { browserName: 'safari', platformName: 'iOS' },
   };
   lodash.forEach(browsers, (value, key) => {
