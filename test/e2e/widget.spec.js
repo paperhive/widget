@@ -7,6 +7,7 @@ module.exports = {
   // the name is overwritten if it is specified in nightwatch.conf.js
   desiredCapabilities: {
     name: 'PaperHive widget',
+    passed: true,
   },
   doiExists: browser => {
     browser
