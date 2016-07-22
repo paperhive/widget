@@ -10,7 +10,7 @@
     "lint:js": "eslint src/ test/",
     "lint:sass": "sass-lint -v --max-warnings 1",
     "lint": "npm-run-all lint:*",
-    "test:e2e": "nightwatch -c -e chrome nightwatch.conf.js",
+    "test:e2e": "nightwatch -c nightwatch.conf.js -e chrome",
     "test": "npm-run-all test:*",
     "watch:js": "webpack --progress --colors --watch",
     "watch:server": "live-server --open='#type=arxiv&id=1603.00059' build",
