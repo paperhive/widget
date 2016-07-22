@@ -12,7 +12,7 @@ module.exports = {
   doiExists: browser => {
     browser
       .url(`${browser.launch_url}#type=doi&id=10.1016/j.neurobiolaging.2016.04.004`)
-      .assert.title('PaperHive widget')
+      .assert.title('PaperHive widgett')
       .end();
   },
 };
