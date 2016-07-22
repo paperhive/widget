@@ -7,12 +7,11 @@ module.exports = {
   // the name is overwritten if it is specified in nightwatch.conf.js
   desiredCapabilities: {
     name: 'PaperHive widget',
-    passed: true,
   },
   doiExists: browser => {
     browser
       .url(`${browser.launch_url}#type=doi&id=10.1016/j.neurobiolaging.2016.04.004`)
-      .assert.title('PaperHive widgett')
+      .assert.title('PaperHive widget')
       .end();
   },
 };
