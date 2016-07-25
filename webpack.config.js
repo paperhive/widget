@@ -1,4 +1,5 @@
 const ExtractText = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 
 const extractHtml = new ExtractText('index.html');
 
@@ -6,13 +7,13 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: './build',
-    filename: 'index.js'
+    filename: 'index.js',
   },
   module: {
     loaders: [
       {
         test: /\.ejs$/,
-        loader: 'ejs-loader'
+        loader: 'ejs-loader',
       },
       {
         test: /\.js$/,
@@ -21,7 +22,7 @@ module.exports = {
         query: {
           presets: ['es2015'],
           plugins: ['transform-runtime'],
-        }
+        },
       },
       {
         test: /\.html$/,
@@ -29,15 +30,19 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass']
+        loaders: ['style', 'css', 'sass'],
       },
       {
         test: /\.svg$/,
-        loaders: ['url', 'svgo-loader?' + JSON.stringify({plugins: []}) ],
+        loaders: ['url', `svgo-loader?${JSON.stringify({ plugins: [] })}`],
       },
-    ]
+    ],
   },
   plugins: [
     extractHtml,
-  ]
+    new webpack.ProvidePlugin({
+      Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    }),
+  ],
 };
