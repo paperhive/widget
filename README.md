@@ -48,11 +48,11 @@ npm run watch
 Make sure that the selenium drivers are installed and up-to-date using the following command:
 
 ```
-`npm bin`/webdriver-manager update
+npm run install:selenium
 ```
 
-After that you can run the e2e tests with:
+After that you can run the e2e tests of the current build with:
 
 ```
-npm test
+npm run build && npm test
 ```
