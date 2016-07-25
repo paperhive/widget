@@ -42,3 +42,17 @@ and opens the widget in your browser (automatically reloads on changes):
 ```
 npm run watch
 ```
+
+## Testing locally
+
+Make sure that the selenium drivers are installed and up-to-date using the following command:
+
+```
+npm run install:selenium
+```
+
+After that you can run the e2e tests of the current build with:
+
+```
+npm run build && npm test
+```
