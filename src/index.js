@@ -1,7 +1,9 @@
 import co from 'co';
 import queryString from 'query-string';
 
+// for webpack
 import './index.html';
+// import './index.script.html';
 import './index.scss';
 import { response2json, shortenNumber } from './utils.js';
 import logo from '../static/img/logo-hexagon.svg';
@@ -9,15 +11,14 @@ import template from './index.ejs';
 
 const apiUrl = 'https://paperhive.org/api';
 
-const getData = co.wrap(function* getData() {
-  const query = queryString.parse(window.location.hash);
+const getData = co.wrap(function* getData(type, id) {
+  if (!type || !id) throw new Error('Type and id parameters are mandatory.');
 
-  const remoteUrl = `${apiUrl}/documents/remote?${
-    queryString.stringify({ type: query.type, id: query.id })
-  }`;
+  const remoteUrl =
+    `${apiUrl}/documents/remote?${queryString.stringify({ type, id })}`;
   const documentResponse = yield fetch(remoteUrl);
   if (documentResponse.status === 404) {
-    throw new Error(`Document with type ${query.type} and id ${query.id} not found on PaperHive`);
+    throw new Error(`Document with type ${type} and id ${id} not found on PaperHive`);
   }
   const doc = yield response2json(documentResponse);
 
@@ -36,11 +37,11 @@ const getData = co.wrap(function* getData() {
   };
 });
 
-const update = co.wrap(function* update() {
-  const target = window.document.body;
+const update = co.wrap(function* update(target, type, id) {
+  let html = '';
   try {
-    const { doc, discussions, hivers } = yield getData();
-    target.innerHTML = template({
+    const { doc, discussions, hivers } = yield getData(type, id);
+    html = template({
       logo,
       numDiscussions: discussions.length,
       numHives: hivers.length,
@@ -50,12 +51,32 @@ const update = co.wrap(function* update() {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    target.innerHTML = '';
   }
+  // eslint-disable-next-line no-param-reassign
+  target.innerHTML = html;
 });
 
-window.addEventListener('hashchange', update);
-update();
+// for iframe
+function onHashChange() {
+  const query = queryString.parse(window.location.hash);
+  update(window.document.body, query.type, query.id);
+}
+
+// for standalone script
+function processElement(element) {
+  // TODO: shadow DOM?
+  update(element, element.dataset.type, element.dataset.id);
+}
+
+const iframe = document.body.classList.contains('ph-iframe-body');
+
+if (iframe) {
+  window.addEventListener('hashchange', onHashChange);
+  onHashChange();
+} else {
+  const elements = document.getElementsByClassName('paperhive-widget');
+  for (const element of elements) processElement(element);
+}
 
 
 // -----
