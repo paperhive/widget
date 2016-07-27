@@ -24,7 +24,7 @@ module.exports = {
   'doi of iframe does not exist': browser => {
     browser
     .url(`${browser.launch_url}#type=doi&id=doesnotexist`)
-    .waitForElementNotPresent('.ph-widget', 1000)
+    .waitForElementNotPresent('.ph-widget', 2000)
     .end();
   },
   'doi (of script resp. div) exists': browser => {
