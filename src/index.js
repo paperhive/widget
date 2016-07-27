@@ -81,7 +81,7 @@ function init() {
   }
 }
 
-init();
+setTimeout(init);
 
 // -----
 // TODO: check if user is signed up with PaperHive
