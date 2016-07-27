@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:js": "webpack --optimize-minimize",
-    "build": "cp ./src/index.script.html ./build/index.script.html && npm run build:js",
+    "build": "npm run build:js && cp ./src/index.script.html ./build/index.script.html",
     "install:selenium": "npm install selenium-standalone && selenium-standalone install --version=2.53.1",
     "lint:js": "eslint src/ test/",
     "lint:sass": "sass-lint -v --max-warnings 1",
