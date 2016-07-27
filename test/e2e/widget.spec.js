@@ -8,25 +8,25 @@ module.exports = {
   desiredCapabilities: {
     name: 'PaperHive widget (iframe and script)',
   },
-  // 'doi of iframe exists': browser => {
-  //   browser
-  //     .url(`${browser.launch_url}#type=doi&id=10.1016/j.neurobiolaging.2016.04.004`)
-  //     .waitForElementVisible('.ph-widget', 2000)
-  //     .assert.title('PaperHive widget')
-  //     .assert.elementPresent('img')
-  //     .assert.elementPresent('.ph-badge')
-  //     .assert.elementPresent('h1')
-  //     .assert.containsText('h1 > a', 'Read and discuss on PaperHive');
-  //   browser.expect.element('.ph-description > small').text.to.match(/\d+ discussions?/);
-  //   browser.expect.element('.ph-description > small').text.to.match(/\d+ hives?/);
-  //   browser.end();
-  // },
-  // 'doi of iframe does not exist': browser => {
-  //   browser
-  //   .url(`${browser.launch_url}#type=doi&id=doesnotexist`)
-  //   .waitForElementNotPresent('.ph-widget', 1000)
-  //   .end();
-  // },
+  'doi of iframe exists': browser => {
+    browser
+      .url(`${browser.launch_url}#type=doi&id=10.1016/j.neurobiolaging.2016.04.004`)
+      .waitForElementVisible('.ph-widget', 2000)
+      .assert.title('PaperHive widget')
+      .assert.elementPresent('img')
+      .assert.elementPresent('.ph-badge')
+      .assert.elementPresent('h1')
+      .assert.containsText('h1 > a', 'Read and discuss on PaperHive');
+    browser.expect.element('.ph-description > small').text.to.match(/\d+ discussions?/);
+    browser.expect.element('.ph-description > small').text.to.match(/\d+ hives?/);
+    browser.end();
+  },
+  'doi of iframe does not exist': browser => {
+    browser
+    .url(`${browser.launch_url}#type=doi&id=doesnotexist`)
+    .waitForElementNotPresent('.ph-widget', 1000)
+    .end();
+  },
   'doi (of script resp. div) exists': browser => {
     browser
       .url(`${browser.launch_url}/index.script.html`)
