@@ -64,19 +64,24 @@ function onHashChange() {
 // for standalone script
 function processElement(element) {
   // TODO: shadow DOM?
-  update(element, element.dataset.type, element.dataset.id);
+  update(element, element.getAttribute('data-type'), element.getAttribute('data-id'));
 }
 
-const iframe = document.body.classList.contains('ph-iframe-body');
+function init() {
+  const iframe = document.body.classList.contains('ph-iframe-body');
 
-if (iframe) {
-  window.addEventListener('hashchange', onHashChange);
-  onHashChange();
-} else {
-  const elements = document.getElementsByClassName('paperhive-widget');
-  for (const element of elements) processElement(element);
+  if (iframe) {
+    window.addEventListener('hashchange', onHashChange);
+    onHashChange();
+  } else {
+    const elements = document.getElementsByClassName('paperhive-widget');
+    // elements is *not* a proper Array. Use the Array prototype instead
+    // (see https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName)
+    Array.prototype.forEach.call(elements, processElement);
+  }
 }
 
+init();
 
 // -----
 // TODO: check if user is signed up with PaperHive
