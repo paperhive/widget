@@ -2,6 +2,8 @@
 
 ![example](https://cloud.githubusercontent.com/assets/3831683/16989765/b8f91a4e-4e95-11e6-84fc-73005b2fbcf0.png)
 
+## Iframe
+
 In order to add the PaperHive widget to your web page we provide an iframe and a script option. You can paste the following `<iframe>` code or the `<div>` below into your template wherever you want the widget to appear.
 
 ```
@@ -15,6 +17,8 @@ In order to add the PaperHive widget to your web page we provide an iframe and a
   allowtransparency="true"
 ></iframe>
 ```
+
+## Script
 
 If you prefer the script option, include PaperHive's JavaScript file once in your template, ideally just before the closing `</body>` tag.
 
