@@ -4,7 +4,7 @@
 
 ```
 <iframe
-  src="https://staging.paperhive.org/widget/#type=doi&id=10.1016/j.neurobiolaging.2016.04.004"
+  src="https://paperhive.org/widget/#type=doi&id=10.1016/j.neurobiolaging.2016.04.004"
   width="100%"
   height="40px"
   style="border:none;overflow:hidden;width:100%;"
