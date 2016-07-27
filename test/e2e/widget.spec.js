@@ -30,7 +30,7 @@ module.exports = {
   'doi (of script resp. div) exists': browser => {
     browser
       .url(`${browser.launch_url}/index.script.html`)
-      .waitForElementVisible('#validDoi', 3000)
+      .waitForElementVisible('#validDoi', 3000, false)
       .assert.elementPresent('#validDoi img')
       .assert.elementPresent('#validDoi .ph-badge')
       .assert.elementPresent('#validDoi h1')
@@ -42,7 +42,7 @@ module.exports = {
   'doi (of script resp. div) does not exist': browser => {
     browser
       .url(`${browser.launch_url}/index.script.html`)
-      .waitForElementPresent('#invalidDoi', 3000)
+      .waitForElementPresent('#invalidDoi', 3000, false)
       .assert.elementNotPresent('#invalidDoi img')
       .assert.elementNotPresent('#invalidDoi .ph-badge')
       .assert.elementNotPresent('#invalidDoi h1')
