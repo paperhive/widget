@@ -7,6 +7,7 @@ module.exports.startServer = () => {
     root: 'build/',
     port: 8080,
     open: false,
+    mount: [['/index.script.html', 'test/e2e/index.script.html']],
     watch: ['non-existing'],
     logLevel: 0,
   });
