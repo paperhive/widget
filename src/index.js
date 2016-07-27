@@ -3,7 +3,6 @@ import queryString from 'query-string';
 
 // for webpack
 import './index.html';
-// import './index.script.html';
 import './index.scss';
 import { response2json, shortenNumber } from './utils.js';
 import logo from '../static/img/logo-hexagon.svg';
