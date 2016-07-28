@@ -17,7 +17,7 @@ const getData = co.wrap(function* getData(type, id) {
     `${apiUrl}/documents/remote?${queryString.stringify({ type, id })}`;
   const documentResponse = yield fetch(remoteUrl);
   if (documentResponse.status === 404) {
-    throw new Error(`Document with type ${type} and id ${id} not found on PaperHive`);
+    throw new Error(`Document with type ${type} and id ${id} is not found on PaperHive`);
   }
   const doc = yield response2json(documentResponse);
 
@@ -81,6 +81,7 @@ function init() {
   }
 }
 
+// wait until DOM has loaded
 setTimeout(init);
 
 // -----
