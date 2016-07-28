@@ -11,7 +11,7 @@ module.exports = {
   'doi of iframe exists': browser => {
     browser
       .url(`${browser.launch_url}#type=doi&id=10.1016/j.neurobiolaging.2016.04.004`)
-      .waitForElementVisible('.ph-widget', 2000)
+      .waitForElementVisible('.ph-widget', 5000)
       .assert.title('PaperHive widget')
       .assert.elementPresent('img')
       .assert.elementPresent('.ph-badge')
@@ -24,13 +24,13 @@ module.exports = {
   'doi of iframe does not exist': browser => {
     browser
     .url(`${browser.launch_url}#type=doi&id=doesnotexist`)
-    .waitForElementNotPresent('.ph-widget', 2000)
+    .waitForElementNotPresent('.ph-widget', 5000)
     .end();
   },
   'doi (of script resp. div) exists': browser => {
     browser
       .url(`${browser.launch_url}/index.script.html`)
-      .waitForElementVisible('#validDoi', 2000)
+      .waitForElementVisible('#validDoi', 5000)
       .assert.elementPresent('#validDoi img')
       .assert.elementPresent('#validDoi .ph-badge')
       .assert.elementPresent('#validDoi h1')
@@ -42,7 +42,7 @@ module.exports = {
   'doi (of script resp. div) does not exist': browser => {
     browser
       .url(`${browser.launch_url}/index.script.html`)
-      .waitForElementPresent('#invalidDoi', 2000)
+      .waitForElementPresent('#invalidDoi', 5000)
       .assert.elementNotPresent('#invalidDoi img')
       .assert.elementNotPresent('#invalidDoi .ph-badge')
       .assert.elementNotPresent('#invalidDoi h1')
