@@ -1,10 +1,11 @@
 import co from 'co';
 import queryString from 'query-string';
 
+import { response2json, shortenNumber } from './utils.js';
+
 // for webpack
 import './index.html';
-import './index.scss';
-import { response2json, shortenNumber } from './utils.js';
+import css from './index.scss';
 import logo from '../static/img/logo-hexagon.svg';
 import template from './index.ejs';
 
@@ -16,9 +17,8 @@ const getData = co.wrap(function* getData(type, id) {
   const remoteUrl =
     `${apiUrl}/documents/remote?${queryString.stringify({ type, id })}`;
   const documentResponse = yield fetch(remoteUrl);
-  if (documentResponse.status === 404) {
-    throw new Error(`Document with type ${type} and id ${id} is not found on PaperHive`);
-  }
+  if (documentResponse.status === 404) return undefined;
+
   const doc = yield response2json(documentResponse);
 
   // get discussions and hivers
@@ -36,16 +36,16 @@ const getData = co.wrap(function* getData(type, id) {
   };
 });
 
-const update = co.wrap(function* update(target, type, id) {
+const updateHtml = co.wrap(function* updateHtml(target, docData) {
   let html = '';
   try {
-    const { doc, discussions, hivers } = yield getData(type, id);
     html = template({
+      css,
       logo,
-      numDiscussions: discussions.length,
-      numHives: hivers.length,
+      numDiscussions: docData.discussions.length,
+      numHives: docData.hivers.length,
       shortenNumber,
-      url: `https://paperhive.org/documents/${doc.id}`,
+      url: `https://paperhive.org/documents/${docData.doc.id}`,
     });
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -56,16 +56,42 @@ const update = co.wrap(function* update(target, type, id) {
 });
 
 // for iframe
-function onHashChange() {
+const onHashChange = co.wrap(function* onHashChange() {
   const query = queryString.parse(window.location.hash);
-  update(window.document.body, query.type, query.id);
-}
+  const docData = yield getData(query.type, query.id);
+  const target = document.getElementsByClassName('ph-iframe-target')[0];
+  updateHtml(target, docData);
+});
 
 // for standalone script
-function processElement(element) {
-  // TODO: shadow DOM?
-  update(element, element.getAttribute('data-type'), element.getAttribute('data-id'));
-}
+const processElement = co.wrap(function* processElement(element) {
+  // reset element
+  // eslint-disable-next-line no-param-reassign
+  element.innerHTML = '';
+
+  // get data
+  const type = element.getAttribute('data-type');
+  const id = element.getAttribute('data-id');
+  const docData = yield getData(type, id);
+  if (!docData) return;
+
+  // check if shadow DOM is supported
+  if (element.createShadowRoot) {
+    const shadow = element.createShadowRoot();
+    updateHtml(shadow, docData);
+  } else {
+    // insert iframe
+    // eslint-disable-next-line no-param-reassign
+    element.innerHTML = `
+      <iframe
+        src="https://paperhive.org/widget/#type=${type}&id=${id}"
+        style="border:none;overflow:hidden;width:100%;"
+        width="100%" height="40px" scrolling="no" frameborder="0"
+        allowtransparency="true"
+      ></iframe>
+    `;
+  }
+});
 
 function init() {
   const iframe = document.body.classList.contains('ph-iframe-body');

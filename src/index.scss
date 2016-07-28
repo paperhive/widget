@@ -9,12 +9,6 @@ $link-color: #037292;
 $logo-size: 40px;
 $white: #fff;
 
-body {
-  // TODO
-  font-family: 'Arial';
-  margin: 0;
-}
-
 h1 {
   font-size: $h1-font-size;
   font-weight: normal;
@@ -30,6 +24,7 @@ a {
 .ph-widget {
   align-items: center;
   display: flex;
+  font-family: 'Arial';
 }
 
 .ph-logo-container {
