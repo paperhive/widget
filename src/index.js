@@ -83,9 +83,3 @@ function init() {
 
 // wait until DOM has loaded
 setTimeout(init);
-
-// -----
-// TODO: check if user is signed up with PaperHive
-// ask local storage
-// yes: Hive button
-// no: explanation
