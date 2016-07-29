@@ -37,28 +37,22 @@ const getData = co.wrap(function* getData(type, id) {
 });
 
 const updateHtml = co.wrap(function* updateHtml(target, docData) {
-  let html = '';
-  try {
-    html = template({
-      css,
-      logo,
-      numDiscussions: docData.discussions.length,
-      numHives: docData.hivers.length,
-      shortenNumber,
-      url: `https://paperhive.org/documents/${docData.doc.id}`,
-    });
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
-  }
   // eslint-disable-next-line no-param-reassign
-  target.innerHTML = html;
+  target.innerHTML = template({
+    css,
+    logo,
+    numDiscussions: docData.discussions.length,
+    numHives: docData.hivers.length,
+    shortenNumber,
+    url: `https://paperhive.org/documents/${docData.doc.id}`,
+  });
 });
 
 // for iframe
 const onHashChange = co.wrap(function* onHashChange() {
   const query = queryString.parse(window.location.hash);
   const docData = yield getData(query.type, query.id);
+  if (!docData) return;
   const target = document.getElementsByClassName('ph-iframe-target')[0];
   updateHtml(target, docData);
 });
