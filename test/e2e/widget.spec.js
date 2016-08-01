@@ -34,12 +34,12 @@ module.exports = {
     browser
       .url(`${browser.launch_url}/index.script.html`)
       .waitForElementVisible('#validDoi', 5000)
-      .execute(function() {
+      .execute(function () {
         return document.body.createShadowRoot !== undefined;
       }, [], result => { shadowDom = result.value; })
-      .perform(function() {
+      .perform(function () {
         if (shadowDom) {
-          browser.execute(function() {
+          browser.execute(function () {
             var element = document.getElementById('validDoi');
             return element.shadowRoot.querySelector('.ph-widget').innerHTML;
           }, [], (result) => {
