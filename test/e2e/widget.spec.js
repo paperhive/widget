@@ -48,8 +48,8 @@ module.exports = {
           });
         } else {
           browser.assert.elementPresent('#validDoi > iframe');
-        //  browser.assert.attributeEquals('#validDoi > iframe', 'src', 'https://paperhive.org/widget/#type=doi&id=10.1016/j.neurobiolaging.2016.04.004');
-          // TODO check if right source is loaded
+          // check if right source is loaded
+          browser.assert.attributeEquals('#validDoi > iframe', 'src', 'https://paperhive.org/widget/#type=doi&id=10.1016/j.neurobiolaging.2016.04.004');
         }
       });
     browser.end();
