@@ -1,4 +1,5 @@
 'use strict';
+const assert = require('assert');
 const utils = require('./utils');
 
 module.exports = {
@@ -39,13 +40,10 @@ module.exports = {
       }, [], result => { shadowDom = result.value; })
       .perform(function testShadowOrIframe() {
         if (shadowDom) {
-          browser.execute(function getResult() {
-            return document.getElementById('validDoi').shadowRoot
-              .querySelector('.ph-widget').innerHTML;
-          }, [], (result) => {
-            // TODO check result.value
-            if (result.error) throw new Error(result.error);
-          });
+          utils.testShadowHTML(browser, 'validDoi', 'img',
+            html => assert(/img class="ph-logo"/.test(html)));
+          utils.testShadowHTML(browser, 'validDoi', '.ph-badge',
+            html => assert(html.length > 0));
         } else {
           browser.assert.elementPresent('#validDoi > iframe');
           // check if right source is loaded
@@ -61,6 +59,8 @@ module.exports = {
     // browser.
     // expect.element('#validDoi .ph-description > small').text.to.match(/\d+ discussions?/);
     // browser.expect.element('#validDoi .ph-description > small').text.to.match(/\d+ hives?/);
+
+  // TODO: implement for shadow and non-shadow browsers (see above)
   // 'script (doi does not exist)': browser => {
   //   browser
   //     .url(`${browser.launch_url}/index.script.html`)
