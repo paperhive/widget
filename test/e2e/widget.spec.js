@@ -34,19 +34,21 @@ module.exports = {
     browser
       .url(`${browser.launch_url}/index.script.html`)
       .waitForElementVisible('#validDoi', 5000)
-      .execute(function () {
+      .execute(function testShadowDOM() {
         return document.body.createShadowRoot !== undefined;
       }, [], result => { shadowDom = result.value; })
-      .perform(function () {
+      .perform(function testShadowOrIframe() {
         if (shadowDom) {
-          browser.execute(function () {
-            var element = document.getElementById('validDoi');
-            return element.shadowRoot.querySelector('.ph-widget').innerHTML;
+          browser.execute(function getResult() {
+            return document.getElementById('validDoi').shadowRoot
+              .querySelector('.ph-widget').innerHTML;
           }, [], (result) => {
+            // TODO check result.value
             if (result.error) throw new Error(result.error);
           });
         } else {
           browser.assert.elementPresent('#validDoi > iframe');
+          // TODO check if right source is loaded
         }
       });
     browser.end();
