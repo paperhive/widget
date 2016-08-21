@@ -52,22 +52,34 @@ module.exports = {
               assert(/\d+ hives?/.test(html));
             });
         } else {
-          browser.assert.elementPresent('#validDoi > iframe');
-          // check if right source is loaded
-          browser.assert.attributeEquals('#validDoi > iframe', 'src', 'https://paperhive.org/widget/#type=doi&id=10.1016/j.neurobiolaging.2016.04.004');
+          browser
+            .assert.elementPresent('#validDoi > iframe')
+            // check if right source is loaded
+            .assert.attributeEquals('#validDoi > iframe', 'src', 'https://paperhive.org/widget/#type=doi&id=10.1016/j.neurobiolaging.2016.04.004');
         }
       });
     browser.end();
   },
 
-  // TODO: implement for shadow and non-shadow browsers (see above)
-  // 'script (doi does not exist)': browser => {
-  //   browser
-  //     .url(`${browser.launch_url}/index.script.html`)
-  //     .waitForElementPresent('#invalidDoi', 5000)
-  //     .assert.elementNotPresent('#invalidDoi img')
-  //     .assert.elementNotPresent('#invalidDoi .ph-badge')
-  //     .assert.elementNotPresent('#invalidDoi h1')
-  //     .end();
-  // },
+  // implement for shadow and non-shadow browsers (see above)
+  'script (doi does not exist)': browser => {
+    let shadowDom;
+    browser
+      .url(`${browser.launch_url}/index.script.html`)
+      .waitForElementPresent('#invalidDoi', 5000)
+      .execute(function testShadowDOM() {
+        return document.body.createShadowRoot !== undefined;
+      }, [], result => { shadowDom = result.value; })
+      .perform(function testShadowOrIframe() {
+        if (shadowDom) {
+          browser
+            .assert.elementNotPresent('#invalidDoi img')
+            .assert.elementNotPresent('#invalidDoi .ph-badge')
+            .assert.elementNotPresent('#invalidDoi h1');
+        } else {
+          browser.assert.elementNotPresent('#invalidDoi > iframe');
+        }
+      });
+    browser.end();
+  },
 };
