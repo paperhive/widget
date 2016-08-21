@@ -25,7 +25,8 @@ module.exports = {
   'iframe (doi does not exist)': browser => {
     browser
     .url(`${browser.launch_url}#type=doi&id=doesnotexist`)
-    .waitForElementNotPresent('.ph-widget', 5000)
+    .pause(2000)
+    .assert.elementNotPresent('.ph-widget')
     .end();
   },
   // nightwatch can not yet test elements inside shadow DOM, see:
@@ -60,26 +61,11 @@ module.exports = {
       });
     browser.end();
   },
-
-  // implement for shadow and non-shadow browsers (see above)
   'script (doi does not exist)': browser => {
-    let shadowDom;
     browser
       .url(`${browser.launch_url}/index.script.html`)
-      .waitForElementPresent('#invalidDoi', 5000)
-      .execute(function testShadowDOM() {
-        return document.body.createShadowRoot !== undefined;
-      }, [], result => { shadowDom = result.value; })
-      .perform(function testShadowOrIframe() {
-        if (shadowDom) {
-          browser
-            .assert.elementNotPresent('#invalidDoi img')
-            .assert.elementNotPresent('#invalidDoi .ph-badge')
-            .assert.elementNotPresent('#invalidDoi h1');
-        } else {
-          browser.assert.elementNotPresent('#invalidDoi > iframe');
-        }
-      });
-    browser.end();
+      .pause(2000)
+      .assert.elementNotPresent('#invalidDoi *')
+      .end();
   },
 };
