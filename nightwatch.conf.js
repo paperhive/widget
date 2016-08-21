@@ -61,7 +61,7 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     },
   };
   config.test_settings.default.desiredCapabilities = {
-    browserName: 'chrome',
+    browserName: 'chrome', // e.g. chrome, firefox
     javascriptEnabled: true,
     acceptSslCerts: true,
   };

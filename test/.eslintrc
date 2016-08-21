@@ -1,6 +1,7 @@
 {
   "extends": "../.eslintrc",
   "rules": {
-    "strict": "off"
+    "strict": "off",
+    "prefer-arrow-callback": "off"
   }
 }

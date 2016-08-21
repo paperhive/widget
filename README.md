@@ -64,6 +64,8 @@ Make sure that the selenium drivers are installed and up-to-date using the follo
 npm run install:selenium
 ```
 
+In ubuntu you need openjdk-8 instead of openjdk-9. (as of 08/19/2016)
+
 After that you can run the e2e tests of the current build with:
 
 ```
