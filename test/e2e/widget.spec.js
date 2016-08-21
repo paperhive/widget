@@ -44,6 +44,13 @@ module.exports = {
             html => assert(/img class="ph-logo"/.test(html)));
           utils.testShadowHTML(browser, 'validDoi', '.ph-badge',
             html => assert(html.length > 0));
+          utils.testShadowHTML(browser, 'validDoi', 'h1 > a',
+            html => assert(/Read and discuss on PaperHive/.test(html)));
+          utils.testShadowHTML(browser, 'validDoi', '.ph-description > small',
+            html => {
+              assert(/\d+ discussions?/.test(html));
+              assert(/\d+ hives?/.test(html));
+            });
         } else {
           browser.assert.elementPresent('#validDoi > iframe');
           // check if right source is loaded
@@ -52,13 +59,6 @@ module.exports = {
       });
     browser.end();
   },
-    //   .assert.elementPresent('#validDoi img')
-    //   .assert.elementPresent('#validDoi .ph-badge')
-    //   .assert.elementPresent('#validDoi h1')
-    //   .assert.containsText('#validDoi h1 > a', 'Read and discuss on PaperHive');
-    // browser.
-    // expect.element('#validDoi .ph-description > small').text.to.match(/\d+ discussions?/);
-    // browser.expect.element('#validDoi .ph-description > small').text.to.match(/\d+ hives?/);
 
   // TODO: implement for shadow and non-shadow browsers (see above)
   // 'script (doi does not exist)': browser => {
