@@ -1,4 +1,4 @@
-// TODO: include normalize
+@import '../node_modules/normalize.css/normalize.css';
 
 $badge-color: #ff7f2a;
 $badge-font-size: 12px;
@@ -24,7 +24,7 @@ a {
 .ph-widget {
   align-items: center;
   display: flex;
-  font-family: 'Arial';
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .ph-logo-container {
