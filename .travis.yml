@@ -2,13 +2,22 @@ language: node_js
 node_js:
   - "node"
 sudo: false
+addons:
+  sauce_connect: true
+before_script:
+  # gcloud key
+  - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  # gcloud sdk repo
+  - echo "deb https://packages.cloud.google.com/apt cloud-sdk-$(lsb_release -c -s) main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+  # install gcloud and jq
+  - sudo apt-get update && sudo apt-get install google-cloud-sdk
+  # give the docker image a name
+  - export DOCKER_IMAGE="gcr.io/paperhive-c0ff33/widget:${TRAVIS_COMMIT:0:8}"
 script:
   - npm run lint
   - npm run build
+  # build docker image
+  - docker build -t ${DOCKER_IMAGE} .
   - npm run test
-addons:
-  artifacts:
-    paths:
-      - build
-    target_paths: $TRAVIS_BUILD_NUMBER-${TRAVIS_COMMIT:0:8}
-  sauce_connect: true
+after_success:
+  - ./upload.sh
