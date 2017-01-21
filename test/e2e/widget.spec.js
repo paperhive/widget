@@ -3,8 +3,6 @@ const assert = require('assert');
 const utils = require('./utils');
 
 module.exports = {
-  before: done => utils.startServer().then(done),
-  after: done => utils.stopServer().then(done),
   // the name is overwritten if it is specified in nightwatch.conf.js
   desiredCapabilities: {
     name: 'PaperHive widget (iframe and script)',

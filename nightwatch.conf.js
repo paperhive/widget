@@ -10,14 +10,18 @@ const config = {
   },
   test_workers: {
     enabled: true,
-    workers: 1,
+    workers: 'auto',
+  },
+  selenium: {
+    start_process: false,
   },
 };
 
 if (process.env.TRAVIS_JOB_NUMBER) {
   lodash.assign(config.test_settings.default, {
-    selenium_port: 80,
+    selenium_port: 443,
     selenium_host: 'ondemand.saucelabs.com',
+    use_ssl: true,
     username: process.env.SAUCE_USERNAME,
     access_key: process.env.SAUCE_ACCESS_KEY,
   });
@@ -42,8 +46,8 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     safari: { browserName: 'safari', version: 'latest', platform: 'OS X 10.11' },
     safariIOS: {
       browserName: 'Safari',
-      deviceName: 'iPhone Simulator',
-      platformVersion: '9.3',
+      deviceName: 'iPhone 7 Simulator',
+      platformVersion: '10.0',
       platformName: 'iOS',
     },
   };
@@ -57,7 +61,7 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     server_path: './node_modules/selenium-standalone/.selenium/selenium-server/2.53.1-server.jar',
     cli_args: {
       'webdriver.chrome.driver':
-        './node_modules/selenium-standalone/.selenium/chromedriver/2.22-x64-chromedriver',
+        './node_modules/selenium-standalone/.selenium/chromedriver/2.27-x64-chromedriver',
     },
   };
   config.test_settings.default.desiredCapabilities = {
