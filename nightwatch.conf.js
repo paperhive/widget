@@ -42,8 +42,8 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     safari: { browserName: 'safari', version: 'latest', platform: 'OS X 10.11' },
     safariIOS: {
       browserName: 'Safari',
-      deviceName: 'iPhone Simulator',
-      platformVersion: '9.3',
+      deviceName: 'iPhone 7 Simulator',
+      platformVersion: '10.0',
       platformName: 'iOS',
     },
   };
