@@ -21,6 +21,9 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     use_ssl: true,
     username: process.env.SAUCE_USERNAME,
     access_key: process.env.SAUCE_ACCESS_KEY,
+    selenium: {
+      start_process: false,
+    },
   });
 
   // construct multiple test_settings (aka environments)
