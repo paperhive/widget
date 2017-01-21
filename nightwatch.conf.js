@@ -10,14 +10,15 @@ const config = {
   },
   test_workers: {
     enabled: true,
-    workers: 1,
+    workers: 'auto',
   },
 };
 
 if (process.env.TRAVIS_JOB_NUMBER) {
   lodash.assign(config.test_settings.default, {
-    selenium_port: 80,
+    selenium_port: 443,
     selenium_host: 'ondemand.saucelabs.com',
+    use_ssl: true,
     username: process.env.SAUCE_USERNAME,
     access_key: process.env.SAUCE_ACCESS_KEY,
   });
@@ -40,15 +41,12 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     firefox: { browserName: 'firefox', version: 'latest', platform: 'Windows 10' },
     ie: { browserName: 'internet explorer', version: 'latest', platform: 'Windows 10' },
     safari: { browserName: 'safari', version: 'latest', platform: 'OS X 10.11' },
-    /*
-    disable because of excessive retries
     safariIOS: {
       browserName: 'Safari',
       deviceName: 'iPhone 7 Simulator',
       platformVersion: '10.0',
       platformName: 'iOS',
     },
-    */
   };
   lodash.forEach(browsers, (value, key) => {
     const desiredCapabilities = lodash.assign({}, defaultDesiredCapabilities, value);

@@ -5,7 +5,10 @@ sudo: required
 services:
   - docker
 addons:
-  sauce_connect: true
+  sauce_connect:
+    username: paperhive
+  jwt:
+    secure: "AhttyJ1wIR8jHzV2evB85n3xxLzEp8HNzd9yEZEP+b9+XmdeIK0saDQwAnqoCSq1ia6HOqb8kJL86ZfMU/JW4AdzwYOTSXs22ZftLlStYVLHNIJiE8VCrNEqLUjhKJ+40WRSXhsI2ufEQwcEh8WMJ5t1Rmm1W8I0EyKSGVTRkkUSpdvjcVupdW9p7QCeb9dA04lFTxQ1PWyKSJyEvx8qh2FqZJRhv+HhlXLojaJ5ElsHv6+E1WDPJ2RZkW1I9WWiArwACgU0az8TAvW/rod6YRJthFz1VTXJ5n6aI0KAnLf/NSvdi9+cK0sOMm+18mjeQFBDjdEJQujijOLG6S7ci1/zN5nFZv2ZSzdRiLp2YXYzhmLX6QtEGmiEmyiMM8lRZMEDgDR4KwfN2NVngYxiESdPu13RglNjMgYsWcgThY4XDCAPTD7uGzP7EvD23N8BfsrQL0YQXxdoI4mSAAlwIiJ4t/13aaNgkqNpRHB4iJvCuCC1u07mU4KQocFZBKI3CPLTJ+/FztcbOzDZHvmZMv0rO/nH2Nv9v1pl1MBUt6Ug6NjJ7AwMeWhOJh92CLI2sGqzjKj5SZThEi1sBwGKhHeT76XYlWbavXO1+SZVPCNsX7OOgSAxzt6TFw1rphSAqZFKcH9hZFShfym+Y7XW9S0uvMcWK70WqtlPICMy8Y0="
 before_script:
   # gcloud key
   - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
