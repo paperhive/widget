@@ -23,6 +23,8 @@ script:
   - npm run build
   # build docker image
   - docker build -t ${DOCKER_IMAGE} .
+  - docker run -d --name widget -p 8080:80 -v $(pwd)/test/e2e/index.script.html:/usr/share/nginx/html/index.script.html ${DOCKER_IMAGE}
   - npm run test
+  - docker stop widget
 after_success:
   - ./upload.sh
