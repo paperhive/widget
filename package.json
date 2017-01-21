@@ -10,7 +10,7 @@
     "lint:js": "eslint src/ test/",
     "lint:sass": "sass-lint -v --max-warnings 1",
     "lint": "npm-run-all lint:*",
-    "test:e2e": "nightwatch -c nightwatch.conf.js `[ ! -z \"$TRAVIS_JOB_NUMBER\" ] && echo '-e android,chrome,edge,firefox,ie,safari,safariIOS'`",
+    "test:e2e": "nightwatch -c nightwatch.conf.js `[ ! -z \"$TRAVIS_JOB_NUMBER\" ] && echo '-e android,chrome,edge,firefox,ie,safari'`",
     "test": "npm-run-all test:*",
     "watch:js": "webpack --progress --colors --watch",
     "watch:server": "live-server --open='#type=arxiv&id=1603.00059' --mount=/index.script.html:test/e2e/index.script.html build",
