@@ -1,7 +1,7 @@
 import co from 'co';
 import queryString from 'query-string';
 
-import { response2json, shortenNumber } from './utils.js';
+import { response2json, shortenNumber } from './utils';
 
 // for webpack
 import './index.html';
@@ -36,7 +36,7 @@ const getData = co.wrap(function* getData(type, id) {
   };
 });
 
-const updateHtml = co.wrap(function* updateHtml(target, docData) {
+function updateHtml(target, docData) {
   // eslint-disable-next-line no-param-reassign
   target.innerHTML = template({
     css,
@@ -46,7 +46,7 @@ const updateHtml = co.wrap(function* updateHtml(target, docData) {
     shortenNumber,
     url: `https://paperhive.org/documents/${docData.doc.id}`,
   });
-});
+}
 
 // for iframe
 const onHashChange = co.wrap(function* onHashChange() {
