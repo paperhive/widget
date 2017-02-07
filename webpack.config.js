@@ -41,7 +41,7 @@ module.exports = {
   plugins: [
     extractHtml,
     new webpack.ProvidePlugin({
-      Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
+      Promise: 'imports?this=>global!exports?global.Promise!promise-polyfill',
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
   ],
