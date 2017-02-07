@@ -8,6 +8,6 @@ module.exports.testShadowHTML = function testShadowHTML(browser, shadowId, selec
     (result) => {
       if (result.error) throw new Error(result.error);
       test(result.value);
-    },
+    } // eslint-disable-line comma-dangle
   );
 };
