@@ -71,5 +71,9 @@ In ubuntu you need openjdk-8 instead of openjdk-9. (as of 08/19/2016)
 After that you can run the e2e tests of the current build with:
 
 ```
-npm run build && npm test
+npm run build
+docker build -t widget .
+docker run -d --rm --name widget -p 8080:80 -v $(pwd)/test/e2e/index.script.html:/usr/share/nginx/html/index.script.html widget
+npm test
+docker stop widget
 ```
