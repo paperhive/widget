@@ -13,7 +13,7 @@
     "test:e2e": "nightwatch -c nightwatch.conf.js `[ ! -z \"$TRAVIS_JOB_NUMBER\" ] && echo '-e chrome,edge,firefox,ie,safari'`",
     "test": "npm-run-all test:*",
     "watch:js": "webpack --progress --colors --watch",
-    "watch:server": "live-server --open='#type=arxiv&id=1603.00059' --mount=/index.script.html:test/e2e/index.script.html build",
+    "watch:server": "live-server --host=0.0.0.0 --open='#type=arxiv&id=1603.00059' --mount=/index.script.html:test/e2e/index.script.html build",
     "watch": "npm-run-all --parallel watch:*"
   },
   "repository": {
@@ -37,8 +37,8 @@
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
     "exports-loader": "^0.6.3",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.9.0",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "file-loader": "^0.10.0",
     "html-loader": "^0.4.3",
     "imports-loader": "^0.7.0",
     "live-server": "^1.0.0",
@@ -46,17 +46,17 @@
     "node-sass": "^4.3.0",
     "npm-run-all": "^4.0.1",
     "sass-lint": "^1.8.2",
-    "sass-loader": "^4.0.0",
+    "sass-loader": "^5.0.0",
     "svgo-loader": "^1.1.0",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "webpack": "^2.2.1"
   },
   "dependencies": {
     "babel-runtime": "^6.9.2",
     "co": "^4.6.0",
-    "es6-promise": "^4.0.5",
     "lodash": "^4.13.1",
     "normalize.css": "^5.0.0",
+    "promise-polyfill": "^6.0.2",
     "query-string": "^4.2.2",
     "whatwg-fetch": "^2.0.2"
   }

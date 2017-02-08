@@ -18,7 +18,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015'],
           plugins: ['transform-runtime'],
@@ -30,19 +30,19 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['css', 'sass'],
+        loaders: ['css-loader', 'sass-loader'],
       },
       {
         test: /\.svg$/,
-        loaders: ['url', `svgo-loader?${JSON.stringify({ plugins: [] })}`],
+        loaders: ['url-loader', `svgo-loader?${JSON.stringify({ plugins: [] })}`],
       },
     ],
   },
   plugins: [
     extractHtml,
     new webpack.ProvidePlugin({
-      Promise: 'imports?this=>global!exports?global.Promise!es6-promise',
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+      Promise: 'promise-polyfill',
+      fetch: 'imports-loader?this=>window!exports-loader?window.fetch!whatwg-fetch',
     }),
   ],
 };
