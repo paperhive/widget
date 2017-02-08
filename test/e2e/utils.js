@@ -5,9 +5,9 @@ module.exports.testShadowHTML = function testShadowHTML(browser, shadowId, selec
     `return document.getElementById('${shadowId}')
       .shadowRoot.querySelector('${selector}').outerHTML;`,
     [],
-    result => {
+    (result) => {
       if (result.error) throw new Error(result.error);
       test(result.value);
-    }
+    } // eslint-disable-line comma-dangle
   );
 };

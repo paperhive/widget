@@ -1,5 +1,7 @@
 # PaperHive widget [![Build Status](https://travis-ci.org/paperhive/paperhive-widget.svg?branch=master)](https://travis-ci.org/paperhive/paperhive-widget)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/paperhive/paperhive-widget.svg)](https://greenkeeper.io/)
+
 ![example](https://cloud.githubusercontent.com/assets/3831683/16989765/b8f91a4e-4e95-11e6-84fc-73005b2fbcf0.png)
 
 ## Iframe
@@ -69,5 +71,9 @@ In ubuntu you need openjdk-8 instead of openjdk-9. (as of 08/19/2016)
 After that you can run the e2e tests of the current build with:
 
 ```
-npm run build && npm test
+npm run build
+docker build -t widget .
+docker run -d --rm --name widget -p 8080:80 -v $(pwd)/test/e2e/index.script.html:/usr/share/nginx/html/index.script.html widget
+npm test
+docker stop widget
 ```
