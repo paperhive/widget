@@ -11,7 +11,7 @@ import template from './index.ejs';
 
 const apiUrl = 'https://paperhive.org/api';
 
-const getData = co.wrap(function* getData(type, id) {
+const getData = co.wrap(function* getDataWrapped(type, id) {
   if (!type || !id) throw new Error('Type and id parameters are mandatory.');
 
   const remoteUrl =
@@ -49,7 +49,7 @@ function updateHtml(target, docData) {
 }
 
 // for iframe
-const onHashChange = co.wrap(function* onHashChange() {
+const onHashChange = co.wrap(function* onHashChangeWrapped() {
   const query = queryString.parse(window.location.hash);
   const docData = yield getData(query.type, query.id);
   if (!docData) return;
@@ -58,7 +58,7 @@ const onHashChange = co.wrap(function* onHashChange() {
 });
 
 // for standalone script
-const processElement = co.wrap(function* processElement(element) {
+const processElement = co.wrap(function* processElementWrapped(element) {
   // reset element
   // eslint-disable-next-line no-param-reassign
   element.innerHTML = '';
