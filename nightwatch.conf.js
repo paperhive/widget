@@ -10,7 +10,7 @@ const config = {
   },
   test_workers: {
     enabled: true,
-    workers: 1,
+    workers: 'auto',
   },
   selenium: {
     start_process: false,
