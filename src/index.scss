@@ -59,7 +59,7 @@ a {
 }
 
 .ph-description {
-  @media (max-device-width: $description-max-width) {
+  @media (max-width: $description-max-width) {
     display: none;
   }
 
@@ -71,13 +71,13 @@ a {
 }
 
 .ph-description-extended {
-  @media (max-device-width: $description-extended-max-width) {
+  @media (max-width: $description-extended-max-width) {
     display: none;
   }
 }
 
 .ph-description-details {
-  @media (max-device-width: $description-details-max-width) {
+  @media (max-width: $description-details-max-width) {
     display: none;
   }
 }
