@@ -6,7 +6,7 @@
   "scripts": {
     "build:js": "webpack --optimize-minimize",
     "build": "npm run build:js",
-    "install:selenium": "npm install selenium-standalone && selenium-standalone install --version=2.53.1",
+    "install:selenium": "npm install selenium-standalone && selenium-standalone install --version=3.4.0",
     "lint:js": "eslint src/ test/",
     "lint:sass": "sass-lint -v --max-warnings 1",
     "lint": "npm-run-all lint:*",
