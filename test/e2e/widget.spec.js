@@ -12,7 +12,6 @@ module.exports = {
     browser
       .url(`${browser.launch_url}#type=doi&id=10.1016/j.neurobiolaging.2016.04.004`)
       .waitForElementVisible('.ph-widget', 5000)
-      .pause(2000)
       .assert.title('PaperHive widget')
       .assert.elementPresent('img')
       .assert.elementPresent('.ph-badge')
@@ -36,7 +35,6 @@ module.exports = {
     browser
       .url(`${browser.launch_url}/index.script.html`)
       .waitForElementVisible('#validDoi', 5000)
-      .pause(2000)
       .execute(function testShadowDOM() {
         return document.body.createShadowRoot !== undefined;
       }, [], (result) => { shadowDom = result.value; })
