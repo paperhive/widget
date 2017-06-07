@@ -8,10 +8,8 @@ const config = {
       output_folder: false,
     },
   },
-  test_workers: {
-    enabled: true,
-    workers: 'auto',
-  },
+  // disable parallel tests because they create problems on travis/saucelabs
+  test_workers: false,
   selenium: {
     start_process: false,
   },
@@ -58,14 +56,16 @@ if (process.env.TRAVIS_JOB_NUMBER) {
 } else {
   config.selenium = {
     start_process: true,
-    server_path: './node_modules/selenium-standalone/.selenium/selenium-server/2.53.1-server.jar',
+    server_path: './node_modules/selenium-standalone/.selenium/selenium-server/3.4.0-server.jar',
     cli_args: {
       'webdriver.chrome.driver':
-        './node_modules/selenium-standalone/.selenium/chromedriver/2.27-x64-chromedriver',
+        './node_modules/selenium-standalone/.selenium/chromedriver/2.29-x64-chromedriver',
+      'webdriver.gecko.driver': './node_modules/selenium-standalone/.selenium/geckodriver/0.16.0-x64-geckodriver',
     },
   };
   config.test_settings.default.desiredCapabilities = {
     browserName: 'chrome', // e.g. chrome, firefox
+    // marionette: true, // for firefox
     javascriptEnabled: true,
     acceptSslCerts: true,
   };

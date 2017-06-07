@@ -1,8 +1,11 @@
 @import '../node_modules/normalize.css/normalize.css';
 
 $badge-color: #ff7f2a;
-$badge-font-size: 12px;
+$badge-font-size: 11px;
 $badge-padding: 2px;
+$description-max-width: 115px;
+$description-extended-max-width: 256px;
+$description-details-max-width: 190px;
 $grey: #808080;
 $h1-font-size: 14px;
 $link-color: #037292;
@@ -56,9 +59,25 @@ a {
 }
 
 .ph-description {
+  @media (max-device-width: $description-max-width) {
+    display: none;
+  }
+
   margin-left: 7px;
 
   small {
     color: $grey;
+  }
+}
+
+.ph-description-extended {
+  @media (max-device-width: $description-extended-max-width) {
+    display: none;
+  }
+}
+
+.ph-description-details {
+  @media (max-device-width: $description-details-max-width) {
+    display: none;
   }
 }
