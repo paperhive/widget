@@ -8,10 +8,8 @@ const config = {
       output_folder: false,
     },
   },
-  test_workers: {
-    enabled: true,
-    workers: 'auto',
-  },
+  // disable parallel tests because they create problems on travis/saucelabs
+  test_workers: false,
   selenium: {
     start_process: false,
   },
