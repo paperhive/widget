@@ -1,23 +1,27 @@
 <style><%= css %></style>
 <div class="ph-widget">
-  <a class="ph-logo-container" target="_blank" title="Read and discuss on PaperHive" href="<%= url %>">
+  <a class="ph-logo-container" target="_blank"
+    title="Read and discuss on PaperHive<%
+      if (details) { %> &middot; <%= details %><% }
+      %>"
+    href="<%= url %>"
+  >
     <img class="ph-logo" src="<%= logo %>">
     <% if (numDiscussions) { %>
       <span class="ph-badge"><%= numDiscussions %></span>
     <% } %>
   </a>
   <div class="ph-description">
-    <h1><a target="_blank" href="<%= url %>">Read and discuss on PaperHive</a></h1>
-    <% if (numDiscussions || numHives) { %>
-      <small>
-        <% if (numDiscussions) { %>
-          <%= shortenNumber(numDiscussions) %> discussion<%= numDiscussions > 1 ? 's' : '' %>
-        <% } %>
-        <% if (numDiscussions && numHives) { %>&middot;<% } %>
-        <% if (numHives) { %>
-          <%= shortenNumber(numHives) %> hive<%= numHives > 1 ? 's' : '' %>
-        <% } %>
-      </small>
+    <h1>
+      <a target="_blank" href="<%= url %>" title="Read and discuss on PaperHive<%
+        if (details) { %> &middot; <%= details %><% }
+        %>"
+      >
+        Read and discuss <span class="ph-description-extended">on PaperHive</span>
+      </a>
+    </h1>
+    <% if (details) { %>
+      <small class="ph-description-details"><%= details %></small>
     <% } %>
   </div>
 </div>

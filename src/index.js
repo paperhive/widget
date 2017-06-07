@@ -37,12 +37,31 @@ const getData = co.wrap(function* getDataWrapped(type, id) {
 });
 
 function updateHtml(target, docData) {
+  const details = [];
+
+  const numDiscussions = docData.discussions.length;
+  if (numDiscussions === 1) {
+    details.push(`${numDiscussions} discussion`);
+  }
+  if (numDiscussions > 1) {
+    details.push(`${numDiscussions} discussions`);
+  }
+
+  const numHives = docData.hivers.length;
+  if (numHives === 1) {
+    details.push(`${numHives} hive`);
+  }
+  if (numHives > 1) {
+    details.push(`${numHives} hives`);
+  }
+
   // eslint-disable-next-line no-param-reassign
   target.innerHTML = template({
     css,
     logo,
-    numDiscussions: docData.discussions.length,
-    numHives: docData.hivers.length,
+    details: details.join(' · '),
+    numDiscussions,
+    numHives,
     shortenNumber,
     url: `https://paperhive.org/documents/${docData.doc.id}`,
   });
