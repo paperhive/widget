@@ -14,45 +14,34 @@ const apiUrl = 'https://paperhive.org/api';
 const getData = co.wrap(function* getDataWrapped(type, id) {
   if (!type || !id) throw new Error('Type and id parameters are mandatory.');
 
-  const remoteUrl =
-    `${apiUrl}/documents/remote?${queryString.stringify({ type, id })}`;
-  const documentResponse = yield fetch(remoteUrl);
+  const documentQuery = queryString.stringify({ type, id });
+  const documentResponse = yield fetch(`${apiUrl}/documents/remote?${documentQuery}`);
   if (documentResponse.status === 404) return undefined;
 
   const doc = yield response2json(documentResponse);
 
-  // get discussions and hivers
-  const [discussionsResponse, hiversResponse] = yield [
-    fetch(`${apiUrl}/documents/${doc.id}/discussions`),
-    fetch(`${apiUrl}/documents/${doc.id}/hivers`),
-  ];
-  const [discussions, hivers] =
-    yield [response2json(discussionsResponse), response2json(hiversResponse)];
+  // get stats
+  const statsResponse = yield fetch(`${apiUrl}/documents/${doc.id}/stats`);
+  const stats = yield response2json(statsResponse);
 
-  return {
-    doc,
-    discussions: discussions.discussions,
-    hivers: hivers.hivers,
-  };
+  return { doc, stats };
 });
 
-function updateHtml(target, docData) {
+function updateHtml(target, data) {
   const details = [];
 
-  const numDiscussions = docData.discussions.length;
-  if (numDiscussions === 1) {
-    details.push(`${numDiscussions} discussion`);
+  if (data.stats.numDiscussions === 1) {
+    details.push(`${data.stats.numDiscussions} discussion`);
   }
-  if (numDiscussions > 1) {
-    details.push(`${numDiscussions} discussions`);
+  if (data.stats.numDiscussions > 1) {
+    details.push(`${shortenNumber(data.stats.numDiscussions)} discussions`);
   }
 
-  const numHives = docData.hivers.length;
-  if (numHives === 1) {
-    details.push(`${numHives} hive`);
+  if (data.stats.numHivers === 1) {
+    details.push(`${data.stats.numHivers} hive`);
   }
-  if (numHives > 1) {
-    details.push(`${numHives} hives`);
+  if (data.stats.numHivers > 1) {
+    details.push(`${shortenNumber(data.stats.numHivers)} hives`);
   }
 
   // eslint-disable-next-line no-param-reassign
@@ -60,20 +49,19 @@ function updateHtml(target, docData) {
     css,
     logo,
     details: details.join(' · '),
-    numDiscussions,
-    numHives,
+    data,
     shortenNumber,
-    url: `https://paperhive.org/documents/${docData.doc.id}`,
+    url: `https://paperhive.org/documents/${data.doc.id}`,
   });
 }
 
 // for iframe
 const onHashChange = co.wrap(function* onHashChangeWrapped() {
   const query = queryString.parse(window.location.hash);
-  const docData = yield getData(query.type, query.id);
-  if (!docData) return;
+  const data = yield getData(query.type, query.id);
+  if (!data) return;
   const target = document.getElementsByClassName('ph-iframe-target')[0];
-  updateHtml(target, docData);
+  updateHtml(target, data);
 });
 
 // for standalone script
@@ -85,13 +73,13 @@ const processElement = co.wrap(function* processElementWrapped(element) {
   // get data
   const type = element.getAttribute('data-type');
   const id = element.getAttribute('data-id');
-  const docData = yield getData(type, id);
-  if (!docData) return;
+  const data = yield getData(type, id);
+  if (!data) return;
 
   // check if shadow DOM is supported
   if (element.createShadowRoot) {
     const shadow = element.createShadowRoot();
-    updateHtml(shadow, docData);
+    updateHtml(shadow, data);
   } else {
     // insert iframe
     // eslint-disable-next-line no-param-reassign
