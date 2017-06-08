@@ -7,8 +7,8 @@
     href="<%= url %>"
   >
     <img class="ph-logo" src="<%= logo %>">
-    <% if (numDiscussions) { %>
-      <span class="ph-badge"><%= numDiscussions %></span>
+    <% if (data.stats.numDiscussions) { %>
+      <span class="ph-badge"><%= shortenNumber(data.stats.numDiscussions) %></span>
     <% } %>
   </a>
   <div class="ph-description">
