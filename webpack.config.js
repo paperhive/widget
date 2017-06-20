@@ -1,5 +1,6 @@
 const ExtractText = require('extract-text-webpack-plugin');
 const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
 
 const extractHtml = new ExtractText('index.html');
@@ -45,5 +46,6 @@ module.exports = {
       Promise: 'promise-polyfill',
       fetch: 'imports-loader?this=>window!exports-loader?window.fetch!whatwg-fetch',
     }),
+    new UglifyJSPlugin(),
   ],
 };
