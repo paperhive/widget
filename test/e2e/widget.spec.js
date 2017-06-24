@@ -23,10 +23,10 @@ module.exports = {
   },
   'iframe (doi does not exist)': (browser) => {
     browser
-    .url(`${browser.launch_url}#type=doi&id=doesnotexist`)
-    .pause(2000)
-    .assert.elementNotPresent('.ph-widget')
-    .end();
+      .url(`${browser.launch_url}#type=doi&id=doesnotexist`)
+      .pause(2000)
+      .assert.elementNotPresent('.ph-widget')
+      .end();
   },
   // nightwatch can not yet test elements inside shadow DOM, see:
   // (https://github.com/nightwatchjs/nightwatch/issues/192)
