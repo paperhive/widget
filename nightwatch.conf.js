@@ -40,7 +40,7 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     chrome: { browserName: 'chrome', version: 'latest', platform: 'Windows 10' },
     edge: { browserName: 'MicrosoftEdge', version: 'latest', platform: 'Windows 10' },
     firefox: { browserName: 'firefox', version: 'latest', platform: 'Windows 10' },
-    ie: { browserName: 'internet explorer', version: 'latest', platform: 'Windows 10' },
+    ie: { browserName: 'internet explorer', version: '11', platform: 'Windows 10' },
     safari: { browserName: 'safari', version: 'latest', platform: 'OS X 10.11' },
     safariIOS: {
       browserName: 'Safari',
