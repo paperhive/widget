@@ -9,6 +9,8 @@
     <img class="ph-logo" src="<%= logo %>">
     <% if (data.stats.numDiscussions) { %>
       <span class="ph-badge"><%= shortenNumber(data.stats.numDiscussions) %></span>
+    <% } else { %>
+      <span class="ph-badge ph-bolt"></span>
     <% } %>
   </a>
   <div class="ph-description">
@@ -20,8 +22,6 @@
         Read and discuss <span class="ph-description-extended">on PaperHive</span>
       </a>
     </h1>
-    <% if (details) { %>
-      <small class="ph-description-details"><%= details %></small>
-    <% } %>
+    <small class="ph-description-details"><%= details %></small>
   </div>
 </div>

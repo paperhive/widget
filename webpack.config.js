@@ -38,6 +38,10 @@ module.exports = {
         test: /\.svg$/,
         loaders: ['url-loader', `svgo-loader?${JSON.stringify({ plugins: [] })}`],
       },
+      {
+        test: /\.(eot|woff|ttf)$/,
+        loaders: ['url-loader'],
+      },
     ],
   },
   plugins: [

@@ -1,7 +1,9 @@
 @import '../node_modules/normalize.css/normalize.css';
+@import '../build-fa/FontAwesome.css';
 
 $badge-color: #ff7f2a;
 $badge-font-size: 11px;
+$badge-bolt-font-size: 9px;
 $badge-padding: 2px;
 $description-max-width: 115px;
 $description-extended-max-width: 256px;
@@ -48,7 +50,7 @@ a {
   color: $white;
   font-size: $badge-font-size;
   font-weight: bold;
-  line-height: 1;
+  line-height: $badge-font-size;
   min-width: $badge-font-size;
   padding: $badge-padding;
   position: absolute;
@@ -56,6 +58,15 @@ a {
   text-align: center;
   top: 4px;
   vertical-align: middle;
+
+  &.ph-bolt {
+    font-family: 'FontAwesome';
+    font-size: $badge-bolt-font-size;
+
+    &::before {
+      content: '';
+    }
+  }
 }
 
 .ph-description {

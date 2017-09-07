@@ -44,6 +44,10 @@ function updateHtml(target, data) {
     details.push(`${shortenNumber(data.stats.numHivers)} hives`);
   }
 
+  if (details.length === 0) {
+    details.push('Be the first to comment!');
+  }
+
   // eslint-disable-next-line no-param-reassign
   target.innerHTML = template({
     css,
