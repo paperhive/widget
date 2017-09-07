@@ -62,6 +62,7 @@ a {
   &.ph-bolt {
     font-family: 'FontAwesome';
     font-size: $badge-bolt-font-size;
+
     &::before {
       content: '';
     }
