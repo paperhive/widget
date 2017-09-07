@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:js": "webpack --optimize-minimize",
-    "build:fonts": "fontmin --text '' node_modules/font-awesome/fonts/* build-fa",
+    "build:fonts": "fontmin --text '' node_modules/font-awesome/fonts/* build-fa > /dev/null",
     "build": "rm -rf build* && npm run build:fonts && npm run build:js",
     "install:selenium": "npm install selenium-standalone && selenium-standalone install --version=3.4.0",
     "lint:js": "eslint src/ test/",
@@ -62,6 +62,7 @@
     "normalize.css": "^7.0.0",
     "promise-polyfill": "^6.0.2",
     "query-string": "^5.0.0",
+    "selenium-standalone": "^6.9.0",
     "whatwg-fetch": "^2.0.2"
   }
 }
