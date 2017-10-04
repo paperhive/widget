@@ -51,7 +51,7 @@
     "sass-loader": "^6.0.0",
     "svgo-loader": "^1.1.0",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "url-loader": "^0.5.7",
+    "url-loader": "^0.6.1",
     "webpack": "^3.0.0"
   },
   "dependencies": {
