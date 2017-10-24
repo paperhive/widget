@@ -40,17 +40,25 @@ module.exports = {
       }, [], (result) => { shadowDom = result.value; })
       .perform(function testShadowOrIframe() {
         if (shadowDom) {
-          utils.testShadowHTML(browser, 'validDoi', 'img',
-            html => assert(/img class="ph-logo"/.test(html)));
-          utils.testShadowHTML(browser, 'validDoi', '.ph-badge',
-            html => assert(html.length > 0));
-          utils.testShadowHTML(browser, 'validDoi', 'h1 > a',
-            html => assert(/Read and discuss on PaperHive/.test(html)));
-          utils.testShadowHTML(browser, 'validDoi', '.ph-description > small',
+          utils.testShadowHTML(
+            browser, 'validDoi', 'img',
+            html => assert(/img class="ph-logo"/.test(html)),
+          );
+          utils.testShadowHTML(
+            browser, 'validDoi', '.ph-badge',
+            html => assert(html.length > 0),
+          );
+          utils.testShadowHTML(
+            browser, 'validDoi', 'h1 > a',
+            html => assert(/Read and discuss on PaperHive/.test(html)),
+          );
+          utils.testShadowHTML(
+            browser, 'validDoi', '.ph-description > small',
             (html) => {
               assert(/\d+ discussions?/.test(html));
               assert(/\d+ hives?/.test(html));
-            });
+            },
+          );
         } else {
           browser
             .assert.elementPresent('#validDoi > iframe')
