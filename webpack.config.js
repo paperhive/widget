@@ -47,7 +47,7 @@ module.exports = {
   plugins: [
     extractHtml,
     new webpack.ProvidePlugin({
-      Promise: 'promise-polyfill',
+      Promise: 'es6-promise',
       fetch: 'imports-loader?this=>window!exports-loader?window.fetch!whatwg-fetch',
     }),
     new UglifyJSPlugin(),
