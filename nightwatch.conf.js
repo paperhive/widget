@@ -59,7 +59,7 @@ if (process.env.TRAVIS_JOB_NUMBER) {
     server_path: './node_modules/selenium-standalone/.selenium/selenium-server/3.4.0-server.jar',
     cli_args: {
       'webdriver.chrome.driver':
-        './node_modules/selenium-standalone/.selenium/chromedriver/2.29-x64-chromedriver',
+        './node_modules/selenium-standalone/.selenium/chromedriver/2.33-x64-chromedriver',
       'webdriver.gecko.driver': './node_modules/selenium-standalone/.selenium/geckodriver/0.16.0-x64-geckodriver',
     },
   };
