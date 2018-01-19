@@ -63,7 +63,7 @@
     "normalize.css": "^7.0.0",
     "promise-polyfill": "^7.0.0",
     "query-string": "^5.0.1",
-    "selenium-standalone": "^6.11.0",
+    "selenium-standalone": "^6.12.0",
     "whatwg-fetch": "^2.0.2"
   }
 }
