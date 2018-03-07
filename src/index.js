@@ -7,6 +7,7 @@ import { response2json, shortenNumber } from './utils';
 import './index.html';
 import css from './index.scss';
 import logo from '../static/img/logo-hexagon.svg';
+import bolt from '../static/img/bolt.svg';
 import template from './index.ejs';
 
 const apiUrl = 'https://paperhive.org/api';
@@ -52,6 +53,7 @@ function updateHtml(target, data) {
   target.innerHTML = template({
     css,
     logo,
+    bolt,
     details: details.join(' · '),
     data,
     shortenNumber,

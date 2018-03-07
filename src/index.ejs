@@ -7,11 +7,13 @@
     href="<%= url %>"
   >
     <img class="ph-logo" src="<%= logo %>">
-    <% if (data.stats.numDiscussions) { %>
-      <span class="ph-badge"><%= shortenNumber(data.stats.numDiscussions) %></span>
-    <% } else { %>
-      <span class="ph-badge ph-bolt"></span>
-    <% } %>
+      <span class="ph-badge">
+        <% if (data.stats.numDiscussions) { %>
+          <%= shortenNumber(data.stats.numDiscussions) %>
+        <% } else { %>
+          <img class="ph-bolt" src="<%= bolt %>">
+        <% } %>
+      </span>
   </a>
   <div class="ph-description">
     <h1>
