@@ -8,8 +8,8 @@
   >
     <img class="ph-logo" src="<%= logo %>">
       <span class="ph-badge">
-        <% if (data.stats.numDiscussions) { %>
-          <%= shortenNumber(data.stats.numDiscussions) %>
+        <% if (data.stats.discussions) { %>
+          <%= shortenNumber(data.stats.discussions) %>
         <% } else { %>
           <img class="ph-bolt" src="<%= bolt %>">
         <% } %>

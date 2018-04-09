@@ -10,39 +10,41 @@ import logo from '../static/img/logo-hexagon.svg';
 import bolt from '../static/img/bolt.svg';
 import template from './index.ejs';
 
-const apiUrl = 'https://paperhive.org/api';
+const apiUrl = 'https://staging.paperhive.org/api';
+const frontendUrl = 'https://staging.paperhive.org';
 
 const getData = co.wrap(function* getDataWrapped(type, id) {
   if (!type || !id) throw new Error('Type and id parameters are mandatory.');
 
   const documentQuery = queryString.stringify({ type, id });
-  const documentResponse = yield fetch(`${apiUrl}/documents/remote?${documentQuery}`);
+  const documentResponse = yield fetch(`${apiUrl}/document-items/by-document/external?${documentQuery}`);
   if (documentResponse.status === 404) return undefined;
 
-  const doc = yield response2json(documentResponse);
+  const body = yield response2json(documentResponse);
+  const documentItem = body.documentItems[0];
 
   // get stats
-  const statsResponse = yield fetch(`${apiUrl}/documents/${doc.id}/stats`);
+  const statsResponse = yield fetch(`${apiUrl}/document-items/by-document/${documentItem.document}/stats`);
   const stats = yield response2json(statsResponse);
 
-  return { doc, stats };
+  return { documentItem, stats };
 });
 
 function updateHtml(target, data) {
   const details = [];
 
-  if (data.stats.numDiscussions === 1) {
-    details.push(`${data.stats.numDiscussions} discussion`);
+  if (data.stats.discussions === 1) {
+    details.push(`${data.stats.discussions} discussion`);
   }
-  if (data.stats.numDiscussions > 1) {
-    details.push(`${shortenNumber(data.stats.numDiscussions)} discussions`);
+  if (data.stats.discussions > 1) {
+    details.push(`${shortenNumber(data.stats.discussions)} discussions`);
   }
 
-  if (data.stats.numHivers === 1) {
-    details.push(`${data.stats.numHivers} hive`);
+  if (data.stats.documentSubscriptions === 1) {
+    details.push(`${data.stats.documentSubscriptions} subscription`);
   }
-  if (data.stats.numHivers > 1) {
-    details.push(`${shortenNumber(data.stats.numHivers)} hives`);
+  if (data.stats.documentSubscriptions > 1) {
+    details.push(`${shortenNumber(data.stats.documentSubscriptions)} subscriptions`);
   }
 
   if (details.length === 0) {
@@ -57,7 +59,7 @@ function updateHtml(target, data) {
     details: details.join(' · '),
     data,
     shortenNumber,
-    url: `https://paperhive.org/documents/${data.doc.id}`,
+    url: `${frontendUrl}/documents/items/${data.documentItem.id}`,
   });
 }
 
