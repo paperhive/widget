@@ -18,7 +18,7 @@ module.exports = {
       .assert.elementPresent('h1')
       .assert.containsText('h1 > a', 'Read and discuss on PaperHive');
     browser.expect.element('.ph-description > small').text.to.match(/\d+ discussions?/);
-    browser.expect.element('.ph-description > small').text.to.match(/\d+ hives?/);
+    browser.expect.element('.ph-description > small').text.to.match(/\d+ subscriptions?/);
     browser.end();
   },
   'iframe (doi does not exist)': (browser) => {
@@ -56,7 +56,7 @@ module.exports = {
             browser, 'validDoi', '.ph-description > small',
             (html) => {
               assert(/\d+ discussions?/.test(html));
-              assert(/\d+ hives?/.test(html));
+              assert(/\d+ subscriptions?/.test(html));
             },
           );
         } else {
