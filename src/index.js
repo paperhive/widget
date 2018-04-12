@@ -10,8 +10,8 @@ import logo from '../static/img/logo-hexagon.svg';
 import bolt from '../static/img/bolt.svg';
 import template from './index.ejs';
 
-const apiUrl = 'https://staging.paperhive.org/api';
-const frontendUrl = 'https://staging.paperhive.org';
+const apiUrl = 'https://paperhive.org/api';
+const frontendUrl = 'https://paperhive.org';
 
 const getData = co.wrap(function* getDataWrapped(type, id) {
   if (!type || !id) throw new Error('Type and id parameters are mandatory.');
