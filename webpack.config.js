@@ -12,7 +12,7 @@ module.exports = {
     filename: 'index.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ejs$/,
         loader: 'ejs-loader',

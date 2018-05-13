@@ -4,7 +4,7 @@
   "description": "PaperHive widget",
   "main": "index.js",
   "scripts": {
-    "build:js": "webpack --optimize-minimize",
+    "build:js": "webpack --mode=production",
     "build": "rm -rf build* && npm run build:js",
     "install:selenium": "npm install selenium-standalone && selenium-standalone install --version=3.4.0",
     "lint:js": "eslint src/ test/",
@@ -12,7 +12,7 @@
     "lint": "npm-run-all lint:*",
     "test:e2e": "nightwatch -c nightwatch.conf.js --retries 3 `[ ! -z \"$TRAVIS_JOB_NUMBER\" ] && echo '-e chrome,edge,firefox,ie,safari'`",
     "test": "npm-run-all test:*",
-    "watch:js": "webpack --progress --colors --watch",
+    "watch:js": "webpack --mode=development --progress --colors --watch",
     "watch:server": "live-server --host=0.0.0.0 --open='#type=arxiv&id=1603.00059' --mount=/index.script.html:test/e2e/index.script.html build",
     "watch": "npm-run-all --parallel watch:*"
   },
@@ -37,7 +37,7 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
     "exports-loader": "^0.7.0",
-    "extract-text-webpack-plugin": "^3.0.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "imports-loader": "^0.8.0",
@@ -46,12 +46,13 @@
     "node-sass": "^4.9.0",
     "npm-run-all": "^4.1.3",
     "sass-lint": "^1.12.1",
-    "sass-loader": "^6.0.7",
+    "sass-loader": "^7.0.1",
     "svgo": "^1.0.5",
     "svgo-loader": "^2.0.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.12.0"
+    "url-loader": "^1.0.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
   },
   "dependencies": {
     "babel-runtime": "^6.9.2",
@@ -59,7 +60,7 @@
     "es6-promise": "^4.2.4",
     "lodash": "^4.17.10",
     "normalize.css": "^8.0.0",
-    "query-string": "^5.1.1",
+    "query-string": "^6.1.0",
     "selenium-standalone": "^6.14.0",
     "whatwg-fetch": "^2.0.4"
   }
