@@ -46,7 +46,7 @@
     "node-sass": "^4.3.0",
     "npm-run-all": "^4.0.1",
     "sass-lint": "^1.12.1",
-    "sass-loader": "^6.0.0",
+    "sass-loader": "^7.0.2",
     "svgo": "^1.0.1",
     "svgo-loader": "^2.0.0",
     "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
