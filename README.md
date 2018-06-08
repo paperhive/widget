@@ -1,7 +1,5 @@
 # PaperHive widget [![Build Status](https://travis-ci.org/paperhive/paperhive-widget.svg?branch=master)](https://travis-ci.org/paperhive/paperhive-widget)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/paperhive/paperhive-widget.svg)](https://greenkeeper.io/)
-
 ![example](https://cloud.githubusercontent.com/assets/3831683/16989765/b8f91a4e-4e95-11e6-84fc-73005b2fbcf0.png)
 
 ## Iframe

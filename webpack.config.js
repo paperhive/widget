@@ -12,14 +12,14 @@ module.exports = {
     filename: 'index.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ejs$/,
         loader: 'ejs-loader',
       },
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules\/(?!(query-string|strict-uri-encode))/,
         loader: 'babel-loader',
         query: {
           presets: ['es2015'],
@@ -36,7 +36,12 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loaders: ['url-loader', `svgo-loader?${JSON.stringify({ plugins: [] })}`],
+        loaders: ['url-loader', `svgo-loader?${JSON.stringify({
+          plugins: [
+            // for IE11, otherwise SVG scaling is broken
+            { removeViewBox: false },
+          ],
+        })}`],
       },
       {
         test: /\.(eot|woff|ttf)$/,
