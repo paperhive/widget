@@ -36,7 +36,12 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loaders: ['url-loader', `svgo-loader?${JSON.stringify({ plugins: [] })}`],
+        loaders: ['url-loader', `svgo-loader?${JSON.stringify({
+          plugins: [
+            // for IE11, otherwise SVG scaling is broken
+            { removeViewBox: false },
+          ],
+        })}`],
       },
       {
         test: /\.(eot|woff|ttf)$/,
