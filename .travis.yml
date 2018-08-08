@@ -9,22 +9,13 @@ addons:
     username: paperhive
   jwt:
     secure: "AhttyJ1wIR8jHzV2evB85n3xxLzEp8HNzd9yEZEP+b9+XmdeIK0saDQwAnqoCSq1ia6HOqb8kJL86ZfMU/JW4AdzwYOTSXs22ZftLlStYVLHNIJiE8VCrNEqLUjhKJ+40WRSXhsI2ufEQwcEh8WMJ5t1Rmm1W8I0EyKSGVTRkkUSpdvjcVupdW9p7QCeb9dA04lFTxQ1PWyKSJyEvx8qh2FqZJRhv+HhlXLojaJ5ElsHv6+E1WDPJ2RZkW1I9WWiArwACgU0az8TAvW/rod6YRJthFz1VTXJ5n6aI0KAnLf/NSvdi9+cK0sOMm+18mjeQFBDjdEJQujijOLG6S7ci1/zN5nFZv2ZSzdRiLp2YXYzhmLX6QtEGmiEmyiMM8lRZMEDgDR4KwfN2NVngYxiESdPu13RglNjMgYsWcgThY4XDCAPTD7uGzP7EvD23N8BfsrQL0YQXxdoI4mSAAlwIiJ4t/13aaNgkqNpRHB4iJvCuCC1u07mU4KQocFZBKI3CPLTJ+/FztcbOzDZHvmZMv0rO/nH2Nv9v1pl1MBUt6Ug6NjJ7AwMeWhOJh92CLI2sGqzjKj5SZThEi1sBwGKhHeT76XYlWbavXO1+SZVPCNsX7OOgSAxzt6TFw1rphSAqZFKcH9hZFShfym+Y7XW9S0uvMcWK70WqtlPICMy8Y0="
-before_script:
-  # gcloud key
-  - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-  # gcloud sdk repo
-  - echo "deb https://packages.cloud.google.com/apt cloud-sdk-$(lsb_release -c -s) main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-  # install gcloud and jq
-  - sudo apt-get update && sudo apt-get install google-cloud-sdk
-  # give the docker image a name
-  - export DOCKER_IMAGE="gcr.io/paperhive-c0ff33/widget:${TRAVIS_COMMIT:0:8}"
 script:
   - npm run lint
   - npm run build
   # build docker image
-  - docker build -t ${DOCKER_IMAGE} .
-  - docker run -d --name widget -p 8080:80 -v $(pwd)/test/e2e/index.script.html:/usr/share/nginx/html/index.script.html ${DOCKER_IMAGE}
+  - docker build -t widget .
+  - docker run -d --name widget -p 8080:80 -v $(pwd)/test/e2e/index.script.html:/usr/share/nginx/html/index.script.html widget
   - npm run test
   - docker stop widget
 after_success:
-  - ./upload.sh
+  - ./docker-push.sh
