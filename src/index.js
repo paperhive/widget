@@ -10,8 +10,11 @@ import logo from '../static/img/logo-hexagon.svg';
 import bolt from '../static/img/bolt.svg';
 import template from './index.ejs';
 
-const apiUrl = 'https://paperhive.org/api';
-const frontendUrl = 'https://paperhive.org';
+const { baseUrl } =
+  window.paperHiveConfig ||
+  { baseUrl: 'https://paperhive.org' };
+
+const apiUrl = `${baseUrl}/api`;
 
 const getData = co.wrap(function* getDataWrapped(type, id) {
   if (!type || !id) throw new Error('Type and id parameters are mandatory.');
@@ -59,7 +62,7 @@ function updateHtml(target, data) {
     details: details.join(' · '),
     data,
     shortenNumber,
-    url: `${frontendUrl}/documents/items/${data.documentItem.id}`,
+    url: `${baseUrl}/documents/items/${data.documentItem.id}`,
   });
 }
 
@@ -93,7 +96,7 @@ const processElement = co.wrap(function* processElementWrapped(element) {
     // eslint-disable-next-line no-param-reassign
     element.innerHTML = `
       <iframe
-        src="https://paperhive.org/widget/#type=${type}&id=${id}"
+        src="${baseUrl}/widget/#type=${type}&id=${id}"
         style="border:none;overflow:hidden;width:100%;"
         width="100%" height="40px" scrolling="no" frameborder="0"
         allowtransparency="true"
